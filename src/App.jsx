@@ -1,5 +1,6 @@
 import { FontStyles, GlobalStyles } from '@styles';
 import { Logo } from '@images';
+import { Button } from '@atoms';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <h2>Connect Lab</h2>
       <img src={Logo} alt="" />
       <p>Testando fonte styling</p>
+      <Button text='login' />
     </>
   );
 }
