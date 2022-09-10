@@ -1,18 +1,15 @@
 import { FontStyles, GlobalStyles } from '@styles';
 
-import { Logo } from '@atoms';
-import { TopBar } from '@organisms';
-import { NavBar } from '@molecules';
+import { Layout } from '@templates';
 
 function App() {
   return (
     <>
       <FontStyles />
       <GlobalStyles />
-      <TopBar>
-        <Logo />
-        <NavBar />
-      </TopBar>
+      <Layout>
+        <p>teste</p>
+      </Layout>
     </>
   );
 }
