@@ -6,8 +6,10 @@ function App() {
     <>
       <FontStyles />
       <GlobalStyles />
-      <h1>ConnectLab</h1>
+      <h1>Connect Lab</h1>
+      <h2>Connect Lab</h2>
       <img src={Logo} alt="" />
+      <p>Testando fonte styling</p>
     </>
   );
 }

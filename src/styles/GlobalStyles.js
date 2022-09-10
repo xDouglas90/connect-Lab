@@ -66,7 +66,7 @@ export const GlobalStyles = createGlobalStyle`
 
     body, input, textarea, button {
         color: var(--common-dk-gray);
-        font-family: sans-serif;
+        font-family: 'Rubik', sans-serif;
         font-size: 1rem;
         font-weight: 400;
         line-height: 24px;
@@ -76,6 +76,10 @@ export const GlobalStyles = createGlobalStyle`
         color: var(--primary-main);
         font-weight: 700;
     } 
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+    }
 
     p {
         color:  var(--secondary-light);
@@ -98,5 +102,9 @@ export const GlobalStyles = createGlobalStyle`
     [disabled] {
         opacity: 0.6;
         cursor: not-allowed;
+    }
+
+    input::placeholder {
+        color: var(--secondary-light);
     }
 `;
