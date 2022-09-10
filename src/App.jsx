@@ -1,15 +1,13 @@
-import { FontStyles, GlobalStyles } from '@styles';
+import { Login } from '@pages';
 
-import { Layout } from '@templates';
+import { FontStyles, GlobalStyles } from '@styles';
 
 function App() {
   return (
     <>
       <FontStyles />
       <GlobalStyles />
-      <Layout>
-        <p>teste</p>
-      </Layout>
+      <Login />
     </>
   );
 }
