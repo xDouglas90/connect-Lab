@@ -1,7 +1,11 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-export const NavLink = () => {
-  return <div>NavLink</div>;
+import * as S from './styles';
+
+export const NavLink = ({ text }) => {
+  return <S.Link>{text}</S.Link>;
 };
 
-// NavLink.propTypes = {};
+NavLink.propTypes = {
+  text: PropTypes.string.isRequired,
+};

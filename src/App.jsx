@@ -1,7 +1,8 @@
 import { FontStyles, GlobalStyles } from '@styles';
 
-import { Button, Logo } from '@atoms';
+import { Logo } from '@atoms';
 import { TopBar } from '@organisms';
+import { NavBar } from '@molecules';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <GlobalStyles />
       <TopBar>
         <Logo />
-        <Button text="login" />
+        <NavBar />
       </TopBar>
     </>
   );
