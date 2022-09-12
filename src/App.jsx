@@ -1,4 +1,4 @@
-import { Login } from '@pages';
+import { SignUp } from '@pages';
 
 import { FontStyles, GlobalStyles } from '@styles';
 
@@ -7,7 +7,7 @@ function App() {
     <>
       <FontStyles />
       <GlobalStyles />
-      <Login />
+      <SignUp />
     </>
   );
 }
