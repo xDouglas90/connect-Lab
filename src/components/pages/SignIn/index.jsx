@@ -6,7 +6,7 @@ import * as S from './styles';
 export const SignIn = () => {
   return (
     <Layout>
-      <S.Container>
+      <S.Form>
         <Title text="Acessar" />
         <Input
           label="E-mail"
@@ -20,9 +20,9 @@ export const SignIn = () => {
           placeholder="Sua senha"
           type="password"
         />
-        <Button isPrimary text="Acessar" />
-        <Link text='Cadastrar' url='#' />
-      </S.Container>
+        <Button isPrimary text="Acessar" type="submit" />
+        <Link text="Cadastrar" url="#" />
+      </S.Form>
     </Layout>
   );
 };
