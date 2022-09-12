@@ -3,7 +3,7 @@ import { Layout } from '@templates';
 
 import * as S from './styles';
 
-export const Login = () => {
+export const SignIn = () => {
   return (
     <Layout>
       <S.Container>
