@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   background: ${colors.primary.main};
+  background: ${colors.common.primaryGradient};
   box-shadow: ${({ theme }) =>
     setValueByTheme(
       theme.title,
@@ -11,7 +12,15 @@ export const Header = styled.header`
       '0px 10px 4px rgba( 31, 38, 135, 0.37 )'
     )};
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 40px;
+  height: 260px;
+  padding: 6px 0px 40px;
+
+  @media (min-width: 768px) {
+    height: fit-content;
+    flex-direction: row;
+    padding: 6px 40px;
+  }
 `;

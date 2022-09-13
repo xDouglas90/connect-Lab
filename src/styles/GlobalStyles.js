@@ -98,4 +98,8 @@ export const GlobalStyles = createGlobalStyle`
     input::placeholder {
         color: var(--secondary);
     }
+
+    ul {
+        list-style: none;
+    }
 `;

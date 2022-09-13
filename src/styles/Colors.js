@@ -1,13 +1,13 @@
 export default {
   primary: {
-    light: '#F0B27A',
-    main: '#FF8818',
-    dark: '#CA6F1E',
+    light: '#bc7ee0',
+    main: '#500979',
+    dark: '#3b0759',
   },
   secondary: {
-    light: '#5D6D7E',
-    main: '#2E4052',
-    dark: '#212F3C',
+    light: '#bbf2e1',
+    main: '#81D6BB',
+    dark: '#44ad8d',
   },
   error: {
     light: '#E57373',
@@ -34,5 +34,11 @@ export default {
     lightGray: '#D7DBDD',
     darkGray: '#495057',
     white: '#FFFFFF',
+    primaryGradient: `linear-gradient(
+      90deg,
+      rgba(80, 9, 121, 1) 0%,
+      rgba(78, 9, 121, 1) 48%,
+      rgba(154, 0, 255, 1) 100%
+    )`,
   },
 };

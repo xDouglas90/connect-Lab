@@ -4,9 +4,9 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 298px;
+  width: 267px;
   height: 86.52px;
-  gap: 24px;
+  gap: 5px;
 `;
 
 export const Icon = styled.img`

@@ -1,8 +1,13 @@
+import { setValueByTheme } from '@utils';
 import styled from 'styled-components';
 
 export const Link = styled.a`
   color: ${({ theme }) =>
-    theme.title === 'Claro' ? 'var(--secondary)' : 'var(--common-white)'};
+    setValueByTheme(
+      theme.title,
+      'var(--common-black)',
+      'var(--common-white)'
+    )};
   cursor: pointer;
   font-weight: 400;
   font-size: 14px;

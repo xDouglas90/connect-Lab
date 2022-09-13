@@ -1,5 +1,5 @@
 import { CustomThemeProvider } from '@contexts';
-import { SignUp } from '@pages';
+import { Profile } from '@pages';
 
 import { FontStyles, GlobalStyles } from '@styles';
 
@@ -8,7 +8,7 @@ function App() {
     <CustomThemeProvider>
       <FontStyles />
       <GlobalStyles />
-      <SignUp />
+      <Profile />
     </CustomThemeProvider>
   );
 }

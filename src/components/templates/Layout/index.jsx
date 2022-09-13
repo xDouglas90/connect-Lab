@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { useCustomTheme } from '@contexts';
 
 import { TopBar } from '@organisms';
-import { Button, Logo, ThemeToggleBtn } from '@atoms';
+import { Logo, ThemeToggleBtn } from '@atoms';
 
 import * as S from './styles';
+import { NavBar } from '@molecules';
 
 export const Layout = ({ children }) => {
   const { theme, toggleTheme } = useCustomTheme();
@@ -15,7 +16,7 @@ export const Layout = ({ children }) => {
       <TopBar>
         <Logo />
         <S.Navigation>
-          <Button text="Login" />
+          <NavBar />
           <ThemeToggleBtn
             toggleTheme={toggleTheme}
             theme={theme.title === 'Claro'}

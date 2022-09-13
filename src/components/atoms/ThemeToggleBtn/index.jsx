@@ -17,7 +17,7 @@ export const ThemeToggleBtn = ({ theme, toggleTheme }) => {
       width={80}
       handleDiameter={30}
       offColor={shade(0.15, colors.primary)}
-      onColor={lighten(0.2, colors.primary)}
+      onColor={lighten(0.3, colors.primary)}
       uncheckedIcon={<S.DarkIcon />}
       checkedIcon={<S.LightIcon />}
     />
