@@ -41,7 +41,7 @@ export const AvatarPic = styled.div`
   height: 60px;
   display: grid;
   place-content: center;
-  color: var(--primary-main);
+  color: var(--primary);
   font-weight: 700;
 `;
 

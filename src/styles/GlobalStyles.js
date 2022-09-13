@@ -5,24 +5,13 @@ import { colors } from '@styles';
 export const GlobalStyles = createGlobalStyle`
     :root {  
         // Colors
-        --primary-light: ${colors.primary.light};
-        --primary-main: ${colors.primary.main};
-        --primary-dark: ${colors.primary.dark};
-        --secondary-light: ${colors.secondary.light};
-        --secondary-main: ${colors.secondary.main};
-        --secondary-dark: ${colors.secondary.dark};
-        --error-light: ${colors.error.light};
-        --error-main: ${colors.error.main};
-        --error-dark: ${colors.error.dark};
-        --info-light: ${colors.info.light};
-        --info-main: ${colors.info.main};
-        --info-dark: ${colors.info.dark};
-        --warning-light: ${colors.warning.light};
-        --warning-main: ${colors.warning.main};
-        --warning-dark: ${colors.warning.dark};
-        --success-light: ${colors.success.light};
-        --success-main: ${colors.success.main};
-        --success-dark: ${colors.success.dark};
+        --background: ${({ theme }) => theme.colors.background};
+        --primary: ${({ theme }) => theme.colors.primary};
+        --secondary: ${({ theme }) => theme.colors.secondary};
+        --error: ${({ theme }) => theme.colors.error};
+        --info: ${({ theme }) => theme.colors.info};
+        --warning: ${({ theme }) => theme.colors.warning};
+        --success: ${({ theme }) => theme.colors.success};
         --common-black: ${colors.common.black};
         --common-lt-gray: ${colors.common.lightGray};
         --common-dk-gray: ${colors.common.darkGray};
@@ -38,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
 
     :focus {
         outline: transparent;
-        box-shadow: 0 0 0 2px var(--primary-color);
+        box-shadow: 0 0 0 2px var(--primary);
     }
 
     *, *::after, *::before {
@@ -61,7 +50,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: var(--common-lt-gray);
+        background-color: var(--background);
         margin: 0;
         padding: 0;
     }
@@ -75,7 +64,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     h1, h2, h3, h4, h5, h6, strong {
-        color: var(--primary-main);
+        color: var(--primary);
         font-weight: 700;
     } 
 
@@ -84,11 +73,11 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     p {
-        color:  var(--secondary-light);
+        color:  var(--secondary);
     }
 
     a {
-        color: var(--secondary-main);
+        color: var(--secondary);
         cursor: pointer;
         text-decoration: none;
     }
@@ -107,6 +96,6 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     input::placeholder {
-        color: var(--secondary-light);
+        color: var(--secondary);
     }
 `;

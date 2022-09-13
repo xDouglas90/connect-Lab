@@ -4,7 +4,7 @@ export const Button = styled.button`
   display: grid;
   place-content: center;
   background: ${({ isPrimary }) =>
-    isPrimary ? 'var(--primary-main)' : 'var(--secondary-main)'};
+    isPrimary ? 'var(--primary)' : 'var(--secondary)'};
   border-radius: 40px;
   color: var(--common-white);
   font-weight: 700;

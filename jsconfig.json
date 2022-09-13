@@ -13,6 +13,7 @@
       "@images": ["./assets/images/index.js"],
       "@icons": ["./assets/icons/index.js"],
       "@styles": ["./styles/index.js"],
+      "@themes": ["./styles/themes/index.js"],
       "@hooks": ["./hooks/index.js"],
       "@service": ["./service/index.js"],
       "@utils": ["./utils/index.js"],

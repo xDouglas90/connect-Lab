@@ -10,23 +10,23 @@ export const Wrapper = styled.div`
 `;
 
 export const Label = styled.label`
-  color: var(--primary-dark);
+  color: var(--primary);
   font-size: 10px;
   font-weight: 400;
 `;
 
 export const Input = styled.input`
-  border: 1px solid var(--secondary-light);
+  border: 1px solid var(--secondary);
   border-radius: 3px;
   padding: 5px 10px;
   width: 100%;
 
   &:focus {
-    border-color: var(--primary-main);
+    border-color: var(--primary);
   }
 
   &::placeholder {
-    color: var(--secondary-light);
+    color: var(--secondary);
     font-size: 10px;
   }
 `;
