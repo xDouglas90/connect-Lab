@@ -25,6 +25,6 @@ export const ThemeToggleBtn = ({ theme, toggleTheme }) => {
 };
 
 ThemeToggleBtn.propTypes = {
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.bool.isRequired,
   toggleTheme: PropTypes.func.isRequired,
 };
