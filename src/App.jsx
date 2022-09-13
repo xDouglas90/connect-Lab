@@ -1,14 +1,15 @@
-import { Profile } from '@pages';
+import { CustomThemeProvider } from '@contexts';
+import { SignUp } from '@pages';
 
 import { FontStyles, GlobalStyles } from '@styles';
 
 function App() {
   return (
-    <>
+    <CustomThemeProvider>
       <FontStyles />
       <GlobalStyles />
-      <Profile />
-    </>
+      <SignUp />
+    </CustomThemeProvider>
   );
 }
 

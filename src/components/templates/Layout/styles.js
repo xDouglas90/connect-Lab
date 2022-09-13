@@ -10,3 +10,15 @@ export const Main = styled.main`
   gap: 40px;
   width: 100vw;
 `;
+
+export const Navigation = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;

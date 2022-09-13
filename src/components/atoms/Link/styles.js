@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Link = styled.a`
-  color: var(--secondary-main);
+  color: ${({ theme }) =>
+    theme.title === 'Claro' ? 'var(--secondary)' : 'var(--common-white)'};
   cursor: pointer;
   font-weight: 400;
   font-size: 14px;
