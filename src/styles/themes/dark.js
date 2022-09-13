@@ -3,7 +3,7 @@ import { colors } from '@styles';
 export default {
   title: 'Escuro',
   colors: {
-    background: colors.common.darkGray,
+    background: colors.common.black,
     primary: colors.primary.light,
     secondary: colors.secondary.light,
     text: colors.common.white,

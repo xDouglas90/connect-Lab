@@ -30,7 +30,7 @@ export default {
     dark: '#388E3C',
   },
   common: {
-    black: '#000000',
+    black: '#070606',
     lightGray: '#D7DBDD',
     darkGray: '#495057',
     white: '#FFFFFF',
