@@ -6,9 +6,17 @@ import * as S from './styles';
 export const NavBar = () => {
   return (
     <S.NavBar>
-      <NavLink text="Início" href="#" />
-      <NavLink text="Dispositivos" href="#" />
-      <NavLink text="Perfil" href="#" />
+      <S.Menu>
+        <S.MenuItem>
+          <NavLink text="Início" href="#" />
+        </S.MenuItem>
+        <S.MenuItem>
+          <NavLink text="Dispositivos" href="#" />
+        </S.MenuItem>
+        <S.MenuItem>
+          <NavLink text="Perfil" href="#" />
+        </S.MenuItem>
+      </S.Menu>
     </S.NavBar>
   );
 };

@@ -9,10 +9,9 @@ export const Container = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 44px 48px;
   gap: 28px;
-
-  width: 381px;
+  padding: 44px 0;
+  width: 338px;
   height: 399.55px;
 
   background: ${({ theme }) =>
@@ -30,6 +29,11 @@ export const Container = styled.article`
       '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )'
     )};
   border-radius: 10px;
+
+  @media (min-width: 576px) {
+    padding: 44px 48px;
+    width: 381px;
+  }
 `;
 
 export const ProfileHeader = styled.header`
