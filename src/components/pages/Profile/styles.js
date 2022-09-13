@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-import { Link } from '@atoms';
+import { colors } from '@styles';
+
+import { setValueByTheme } from '@utils';
 
 export const Container = styled.article`
   display: flex;
@@ -13,8 +15,20 @@ export const Container = styled.article`
   width: 381px;
   height: 399.55px;
 
-  background: var(--common-white);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-white)',
+      'rgba( 255, 255, 255, 0.25 )'
+    )};
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )'
+    )};
   border-radius: 10px;
 `;
 
@@ -35,13 +49,18 @@ export const UserAvatar = styled.div`
 `;
 
 export const AvatarPic = styled.div`
-  background: var(--common-lt-gray);
+  background: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-lt-gray)',
+      'var(--common-white)'
+    )};
   border-radius: 50%;
   width: 58.82px;
   height: 60px;
   display: grid;
   place-content: center;
-  color: var(--primary);
+  color: ${colors.primary.main};
   font-weight: 700;
 `;
 
@@ -58,7 +77,12 @@ export const UserInfo = styled.div`
 `;
 
 export const UserName = styled.strong`
-  color: var(--common-dk-gray);
+  color: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-dk-gray)',
+      'var(--common-white)'
+    )};
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
@@ -66,12 +90,16 @@ export const UserName = styled.strong`
 `;
 
 export const UserContact = styled.p`
-  color: var(--common-black);
+  color: ${({ theme }) =>
+    setValueByTheme(theme.title, 'var(--common-black)', 'var(--common-white)')};
   font-size: 12px;
   margin: 0;
 
   a {
-    color: var(--common-dk-gray);
+    color: ${({ theme }) =>
+      theme.title === 'Claro'
+        ? 'var(--common-dk-gray)'
+        : 'var(--common-white)'};
     font-size: 12px;
   }
 
@@ -92,8 +120,19 @@ export const UserAddress = styled.div`
 `;
 
 export const AddressTitle = styled.strong`
-  border-bottom: 1px solid var(--common-dk-gray);
-  color: var(--common-dk-gray);
+  border-bottom: 1px solid
+    ${({ theme }) =>
+      setValueByTheme(
+        theme.title,
+        'var(--common-dk-gray)',
+        'var(--common-white)'
+      )};
+  color: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-dk-gray)',
+      'var(--common-white)'
+    )};
   font-weight: 700;
   font-size: 14px;
   text-transform: capitalize;
@@ -101,12 +140,22 @@ export const AddressTitle = styled.strong`
 `;
 
 export const AddressZipCode = styled.p`
-  color: var(--common-dk-gray);
+  color: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-dk-gray)',
+      'var(--common-white)'
+    )};
   font-weight: 400;
   font-size: 12px;
 `;
 
 export const Address = styled.p`
-  color: var(--common-dk-gray);
+  color: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-dk-gray)',
+      'var(--common-white)'
+    )};
   font-size: 10px;
 `;
