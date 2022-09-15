@@ -1,17 +1,20 @@
 import { createGlobalStyle } from 'styled-components';
 
 import { colors } from '@styles';
+import { setValueByTheme } from '@utils';
 
 export const GlobalStyles = createGlobalStyle`
     :root {  
         // Colors
         --background: ${({ theme }) => theme.colors.background};
         --primary: ${({ theme }) => theme.colors.primary};
+        --primary-light: ${colors.primary.light};
         --secondary: ${({ theme }) => theme.colors.secondary};
         --error: ${({ theme }) => theme.colors.error};
         --info: ${({ theme }) => theme.colors.info};
         --warning: ${({ theme }) => theme.colors.warning};
         --success: ${({ theme }) => theme.colors.success};
+        --text: ${({ theme }) => theme.colors.text};
         --common-black: ${colors.common.black};
         --common-lt-gray: ${colors.common.lightGray};
         --common-dk-gray: ${colors.common.darkGray};
@@ -50,7 +53,12 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: var(--background);
+        background-color: ${({ theme }) =>
+          setValueByTheme(
+            theme.title,
+            'var(--common-lt-gray)',
+            'var(--common-black)'
+          )};
         margin: 0;
         padding: 0;
     }
@@ -72,8 +80,8 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Dancing Script', cursive;
     }
 
-    p {
-        color:  var(--secondary);
+    p, span {
+        color:  var(--text);
     }
 
     a {

@@ -1,3 +1,5 @@
+import { FilterGroup } from './FilterGroup';
 import { NavBar } from './NavBar';
+import { ProductCard } from './ProductCard';
 
-export { NavBar };
+export { FilterGroup, NavBar, ProductCard };

@@ -20,6 +20,6 @@ export const Form = styled.form`
   box-shadow: ${({ theme }) =>
     theme.title === 'Claro'
       ? '0px 4px 4px rgba(0, 0, 0, 0.25)'
-      : '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )'};
+      : '0 4px 4px rgba(129,214,187, 0.27)'};
   border-radius: 10px;
 `;

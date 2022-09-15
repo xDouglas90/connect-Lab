@@ -9,7 +9,7 @@ export const Header = styled.header`
     setValueByTheme(
       theme.title,
       '0px 2px 4px rgba(0, 0, 0, 0.25)',
-      '0px 10px 4px rgba( 31, 38, 135, 0.37 )'
+      '0 4px 4px rgba(129,214,187, 0.27)'
     )};
   display: flex;
   flex-direction: column;
