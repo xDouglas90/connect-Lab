@@ -6,7 +6,7 @@ export default {
     background: colors.common.black,
     primary: colors.primary.light,
     secondary: colors.secondary.light,
-    text: colors.common.white,
+    text: colors.common.lightGray,
     info: colors.info.light,
     success: colors.success.light,
     error: colors.error.light,

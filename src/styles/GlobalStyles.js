@@ -7,11 +7,13 @@ export const GlobalStyles = createGlobalStyle`
         // Colors
         --background: ${({ theme }) => theme.colors.background};
         --primary: ${({ theme }) => theme.colors.primary};
+        --primary-light: ${colors.primary.light};
         --secondary: ${({ theme }) => theme.colors.secondary};
         --error: ${({ theme }) => theme.colors.error};
         --info: ${({ theme }) => theme.colors.info};
         --warning: ${({ theme }) => theme.colors.warning};
         --success: ${({ theme }) => theme.colors.success};
+        --text: ${({ theme }) => theme.colors.text};
         --common-black: ${colors.common.black};
         --common-lt-gray: ${colors.common.lightGray};
         --common-dk-gray: ${colors.common.darkGray};
@@ -73,7 +75,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     p {
-        color:  var(--secondary);
+        color:  var(--text);
     }
 
     a {
