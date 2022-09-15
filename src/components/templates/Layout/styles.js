@@ -5,13 +5,9 @@ export const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px 120px;
+  padding: 60px 120px 0;
   gap: 40px;
-  width: 100vw;
-
-  @media (min-width: 768px) {
-    height: calc(100vh - 98.52px);
-  }
+  width: 100%;
 `;
 
 export const Navigation = styled.div`
