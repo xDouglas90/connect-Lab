@@ -20,18 +20,21 @@ export const CardContainer = styled.li`
   align-items: center;
   justify-content: space-between;
   height: 120px;
-  width: 385px;
+  width: 350px;
 
-  transition: transform ease-in 0.4s, box-shadow ease-in 0.3s;
+  @media (min-width: 576px) {
+    transition: transform ease-in 0.4s, box-shadow ease-in 0.3s;
+    width: 385px;
 
-  &:hover {
-    box-shadow: ${({ theme }) =>
-      setValueByTheme(
-        theme.title,
-        '0px 4px 10px rgba(0, 0, 0, 0.45)',
-        '0 8px 10px 0 rgba(129,214,187, 0.27)'
-      )};
-    transform: scale(1.05);
+    &:hover {
+      box-shadow: ${({ theme }) =>
+        setValueByTheme(
+          theme.title,
+          '0px 4px 10px rgba(0, 0, 0, 0.45)',
+          '0 8px 10px 0 rgba(129,214,187, 0.27)'
+        )};
+      transform: scale(1.05);
+    }
   }
 `;
 
