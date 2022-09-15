@@ -1,4 +1,5 @@
-import { TopBar } from "./TopBar";
-import { WeatherInfo } from "./WeatherInfo";
+import { ProductList } from './ProductList';
+import { TopBar } from './TopBar';
+import { WeatherInfo } from './WeatherInfo';
 
-export { TopBar, WeatherInfo };
+export { ProductList, TopBar, WeatherInfo };
