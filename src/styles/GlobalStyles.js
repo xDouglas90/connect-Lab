@@ -117,4 +117,22 @@ export const GlobalStyles = createGlobalStyle`
     ul {
         list-style: none;
     }
+
+    .modal-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-container {
+        background: transparent;
+        border: 10px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        max-width: fit-content;
+    }
 `;

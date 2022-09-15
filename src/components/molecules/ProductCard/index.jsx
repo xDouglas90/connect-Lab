@@ -4,10 +4,10 @@ import { CardHeading } from '@atoms';
 
 import * as S from './styles';
 
-export const ProductCard = ({ product, stateIcon }) => {
+export const ProductCard = ({ product, stateIcon, onClick }) => {
   return (
     <S.CardContainer>
-      <S.CardWrapper title='Clique para mais informações'>
+      <S.CardWrapper onClick={onClick} title="Clique para mais informações">
         <S.ProductFigure>
           <S.ProductImg src={product.image} />
         </S.ProductFigure>
@@ -28,6 +28,7 @@ export const ProductCard = ({ product, stateIcon }) => {
 };
 
 ProductCard.propTypes = {
+  onClick: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired,
   stateIcon: PropTypes.string.isRequired,
 };
