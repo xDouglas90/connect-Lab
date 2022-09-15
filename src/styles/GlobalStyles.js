@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 import { colors } from '@styles';
+import { setValueByTheme } from '@utils';
 
 export const GlobalStyles = createGlobalStyle`
     :root {  
@@ -52,7 +53,12 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: var(--background);
+        background-color: ${({ theme }) =>
+          setValueByTheme(
+            theme.title,
+            'var(--common-lt-gray)',
+            'var(--common-black)'
+          )};
         margin: 0;
         padding: 0;
     }
@@ -74,7 +80,7 @@ export const GlobalStyles = createGlobalStyle`
         font-family: 'Dancing Script', cursive;
     }
 
-    p {
+    p, span {
         color:  var(--text);
     }
 

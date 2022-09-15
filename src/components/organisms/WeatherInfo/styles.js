@@ -5,18 +5,13 @@ import { Title } from '../../atoms/Title/styles';
 import { setValueByTheme } from '@utils';
 
 export const Container = styled.section`
-  background: ${({ theme }) =>
-    setValueByTheme(
-      theme.title,
-      'var(--common-white)',
-      'rgba( 255, 255, 255, 0.25 )'
-    )};
+  background: var(--background);
   border-radius: 10px;
   box-shadow: ${({ theme }) =>
     setValueByTheme(
       theme.title,
       '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )'
+      '0 4px 4px rgba(129,214,187, 0.27)'
     )};
   display: flex;
   flex-direction: column;
@@ -42,7 +37,7 @@ export const UserCity = styled.strong`
       theme.title,
       'var(--common-dk-gray)',
       'var(--common-white)'
-    )};;
+    )};
   font-size: 32px;
   font-weight: 400;
 `;
