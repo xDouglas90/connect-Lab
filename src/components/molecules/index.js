@@ -1,3 +1,4 @@
+import { FilterGroup } from './FilterGroup';
 import { NavBar } from './NavBar';
 
-export { NavBar };
+export { FilterGroup, NavBar };
