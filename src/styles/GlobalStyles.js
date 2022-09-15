@@ -71,6 +71,13 @@ export const GlobalStyles = createGlobalStyle`
         line-height: 24px;
     }
 
+    :focus {
+        border-radius: inherit;
+        box-shadow: none;
+        border: none;
+        outline: 1px solid var(--primary); 
+    }
+
     h1, h2, h3, h4, h5, h6, strong {
         color: var(--primary);
         font-weight: 700;
