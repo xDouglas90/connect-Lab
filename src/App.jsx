@@ -1,5 +1,5 @@
 import { CustomThemeProvider } from '@contexts';
-import { Home } from '@pages';
+import { Devices } from '@pages';
 
 import { FontStyles, GlobalStyles } from '@styles';
 
@@ -8,7 +8,7 @@ function App() {
     <CustomThemeProvider>
       <FontStyles />
       <GlobalStyles />
-      <Home />
+      <Devices />
     </CustomThemeProvider>
   );
 }
