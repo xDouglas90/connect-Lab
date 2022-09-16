@@ -15,4 +15,8 @@ export const Button = styled.button`
   text-transform: uppercase;
   text-shadow: 0 0 2px var(--common-black);
   padding: 10px 24px;
+
+  &:focus {
+    border-radius: 40px;
+  }
 `;
