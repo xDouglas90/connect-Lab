@@ -119,7 +119,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .modal-overlay {
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.8);
         position: fixed;
         inset: 0;
         display: flex;
@@ -134,5 +134,11 @@ export const GlobalStyles = createGlobalStyle`
         position: relative;
         width: 100%;
         max-width: fit-content;
+
+        &:focus {
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
     }
 `;
