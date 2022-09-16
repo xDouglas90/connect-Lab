@@ -1,3 +1,4 @@
+import products from './devicesMockList';
 import setValueByTheme from './setValueByTheme';
 
-export { setValueByTheme };
+export { products, setValueByTheme };
