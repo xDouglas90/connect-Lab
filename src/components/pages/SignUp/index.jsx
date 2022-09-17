@@ -63,7 +63,7 @@ export const SignUp = () => {
           </S.Column>
         </S.FieldsContainer>
         <Button isPrimary text="Cadastrar" type="submit" />
-        <Link text="Login" url="#" />
+        <Link text="Login" url="/login" />
       </S.Form>
     </Layout>
   );

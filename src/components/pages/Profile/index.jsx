@@ -32,7 +32,7 @@ export const Profile = () => {
 
         <Button isPrimary text="Editar" />
 
-        <Link text="Sair" url="#" />
+        <Link text="Sair" url="/" />
       </S.Container>
     </Layout>
   );

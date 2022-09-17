@@ -13,7 +13,7 @@ export const Button = ({ isPrimary, type = 'button', text, onClick, id }) => {
 Button.propTypes = {
   id: PropTypes.string,
   isPrimary: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   type: PropTypes.string,
   text: PropTypes.string.isRequired,
 };

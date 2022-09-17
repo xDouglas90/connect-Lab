@@ -8,13 +8,13 @@ export const NavBar = () => {
     <S.NavBar>
       <S.Menu>
         <S.MenuItem>
-          <NavLink text="Início" href="#" />
+          <NavLink text="Início" link="/inicio" />
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink text="Dispositivos" href="#" />
+          <NavLink text="Dispositivos" link="/dispositivos" />
         </S.MenuItem>
         <S.MenuItem>
-          <NavLink text="Perfil" href="#" />
+          <NavLink text="Perfil" link="/perfil" />
         </S.MenuItem>
       </S.Menu>
     </S.NavBar>

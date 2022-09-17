@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as S from './styles';
 
 export const Link = ({ text, url }) => {
-  return <S.Link href={url}>{text}</S.Link>;
+  return <S.Link to={url}>{text}</S.Link>;
 };
 
 Link.propTypes = {
