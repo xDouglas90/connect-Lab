@@ -38,9 +38,7 @@ export const AuthProvider = ({ children }) => {
       if (!error?.response) {
         setErrorMsg('Sem resposta do servidor');
       } else if (error.response?.status === 401) {
-        setErrorMsg('Não autorizado');
-      } else if (error.response?.status === 400) {
-        setErrorMsg('Email ou Senha inválidos');
+        setErrorMsg('Email ou Senha inválido(s)');
       } else {
         setErrorMsg('Falha no Login');
       }
