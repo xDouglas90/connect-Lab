@@ -22,6 +22,7 @@ export const Input = forwardRef((props, ref) => {
       <S.Input
         type={type}
         name={name}
+        id={name}
         placeholder={placeholder}
         defaultValue={defaultValue}
         value={value}
