@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginSchema } from '@utils';
 
 import { useAuthContext } from '@contexts';
 
@@ -9,13 +12,14 @@ import { Button, Input, Link, Title } from '@atoms';
 import * as S from './styles';
 
 export const SignIn = () => {
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
   const redirect = useNavigate();
-  const { isAuth, handleLogin, errorMsg, setErrorMsg } = useAuthContext();
+  const { isAuth, handleLogin, errorMsg } = useAuthContext();
 
   const errorRef = useRef();
-
-  const [userEmail, setUserEmail] = useState('');
-  const [userPswd, setUserPswd] = useState('');
 
   useEffect(() => {
     if (errorMsg) {
@@ -29,50 +33,30 @@ export const SignIn = () => {
     }
   }, [isAuth, redirect]);
 
-  const handleUserEmail = (e) => {
-    setErrorMsg('');
-    setUserEmail(e.target.value);
-  };
-
-  const handleUserPswd = (e) => {
-    setErrorMsg('');
-    setUserPswd(e.target.value);
-  };
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    return handleLogin(userEmail, userPswd);
+  const handleLoginSubmit = ({ email, password }) => {
+    return handleLogin(email, password);
   };
 
   return (
     <Layout>
-      <S.Form>
+      <S.Form onSubmit={handleSubmit(handleLoginSubmit)}>
         <p ref={errorRef} aria-live="assertive">
           {errorMsg}
         </p>
         <Title text="Acessar" />
         <Input
           label="E-mail"
-          name="email"
           placeholder="Seu e-mail"
           type="email"
-          value={userEmail}
-          onChange={handleUserEmail}
+          {...register('email')}
         />
         <Input
           label="Senha"
-          name="password"
           placeholder="Sua senha"
           type="password"
-          value={userPswd}
-          onChange={handleUserPswd}
+          {...register('password')}
         />
-        <Button
-          isPrimary
-          text="Acessar"
-          type="submit"
-          onClick={handleLoginSubmit}
-        />
+        <Button isPrimary text="Acessar" type="submit" />
         <Link text="Cadastrar" url="/registro" />
       </S.Form>
     </Layout>
