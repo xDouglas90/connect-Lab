@@ -32,6 +32,7 @@ export const FieldsContainer = styled.div`
   gap: 14px;
 
   @media (min-width: 768px) {
+    align-items: flex-start;
     flex-direction: row;
   }
 `;

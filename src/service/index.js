@@ -1,3 +1,4 @@
 import axios from './api/axios';
+import { queryClient } from './api/queryClient';
 
-export default axios;
+export { axios, queryClient };

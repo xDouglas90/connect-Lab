@@ -12,6 +12,7 @@ export const Input = forwardRef((props, ref) => {
     placeholder,
     defaultValue,
     isDisplayed = true,
+    list,
     value,
     onChange,
   } = props;
@@ -28,6 +29,7 @@ export const Input = forwardRef((props, ref) => {
         value={value}
         onChange={onChange}
         ref={ref}
+        list={list}
       />
     </S.Wrapper>
   );
@@ -42,4 +44,5 @@ Input.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  list: PropTypes.string,
 };
