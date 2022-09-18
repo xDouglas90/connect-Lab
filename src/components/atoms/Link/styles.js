@@ -1,7 +1,10 @@
-import { setValueByTheme } from '@utils';
 import styled from 'styled-components';
 
-export const Link = styled.a`
+import { Link as RouterLink } from 'react-router-dom';
+
+import { setValueByTheme } from '@utils';
+
+export const Link = styled(RouterLink)`
   color: ${({ theme }) =>
     setValueByTheme(
       theme.title,

@@ -1,3 +1,4 @@
 import { CustomThemeProvider, useCustomTheme } from './ThemeContext/index.jsx';
+import { AuthProvider, useAuthContext } from './AuthContext/index.jsx';
 
-export { CustomThemeProvider, useCustomTheme };
+export { AuthProvider, CustomThemeProvider, useAuthContext, useCustomTheme };

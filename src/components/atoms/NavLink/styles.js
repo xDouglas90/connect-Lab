@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Link = styled.a`
+import { Link as RouterLink } from 'react-router-dom';
+
+export const Link = styled(RouterLink)`
   color: var(--common-white);
   font-weight: 500;
   font-size: 24px;

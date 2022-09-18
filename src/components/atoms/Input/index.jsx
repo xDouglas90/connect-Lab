@@ -1,17 +1,21 @@
 import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
 import * as S from './styles';
 
-export const Input = ({
-  name,
-  label,
-  type = 'text',
-  placeholder,
-  defaultValue,
-  isDisplayed = true,
-  value,
-  onChange,
-}) => {
+// eslint-disable-next-line react/display-name
+export const Input = forwardRef((props, ref) => {
+  const {
+    name,
+    label,
+    type = 'text',
+    placeholder,
+    defaultValue,
+    isDisplayed = true,
+    value,
+    onChange,
+  } = props;
+
   return (
     <S.Wrapper isDisplayed={isDisplayed}>
       <S.Label htmlFor={name}>{label}</S.Label>
@@ -23,10 +27,11 @@ export const Input = ({
         defaultValue={defaultValue}
         value={value}
         onChange={onChange}
+        ref={ref}
       />
     </S.Wrapper>
   );
-};
+});
 
 Input.propTypes = {
   isDisplayed: PropTypes.bool,

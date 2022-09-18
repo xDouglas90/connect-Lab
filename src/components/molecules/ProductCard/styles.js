@@ -23,7 +23,7 @@ export const CardContainer = styled.li`
   width: 350px;
 
   @media (min-width: 576px) {
-    transition: transform ease-in 0.4s, box-shadow ease-in 0.3s;
+    transition: transform ease-in 0.25s, box-shadow ease-in 0.3s;
     width: 385px;
 
     &:hover {
