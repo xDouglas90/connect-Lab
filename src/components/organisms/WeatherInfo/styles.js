@@ -5,7 +5,12 @@ import { Title } from '../../atoms/Title/styles';
 import { setValueByTheme } from '@utils';
 
 export const Container = styled.section`
-  background: var(--background);
+  background: ${({ theme }) =>
+    setValueByTheme(
+      theme.title,
+      'var(--common-white)',
+      'var(--common-dk-gray)'
+    )};
   border-radius: 10px;
   box-shadow: ${({ theme }) =>
     setValueByTheme(

@@ -12,8 +12,10 @@ export const Input = forwardRef((props, ref) => {
     placeholder,
     defaultValue,
     isDisplayed = true,
+    list,
     value,
     onChange,
+    children,
   } = props;
 
   return (
@@ -28,12 +30,15 @@ export const Input = forwardRef((props, ref) => {
         value={value}
         onChange={onChange}
         ref={ref}
+        list={list}
       />
+      {children}
     </S.Wrapper>
   );
 });
 
 Input.propTypes = {
+  children: PropTypes.node,
   isDisplayed: PropTypes.bool,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
@@ -42,4 +47,5 @@ Input.propTypes = {
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  list: PropTypes.string,
 };

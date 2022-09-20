@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '@utils';
@@ -20,10 +21,12 @@ export const SignIn = () => {
   const {
     register,
     handleSubmit,
-    formState,
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
-    validateMode: 'onBlur',
+    mode: 'onChange',
+    reValidateMode: 'onBlur',
+    shouldFocusError: true,
   });
 
   const { isAuth, handleLogin, errorMsg } = useAuthContext();
@@ -64,16 +67,18 @@ export const SignIn = () => {
           placeholder="Seu e-mail"
           type="email"
           {...register('email')}
-        />
-        <S.Error>{formState.errors.email?.message}</S.Error>
+        >
+          <S.Error>{errors.email?.message}</S.Error>
+        </Input>
 
         <Input
           label="Senha"
           placeholder="Sua senha"
           type="password"
           {...register('password')}
-        />
-        <S.Error>{formState.errors.password?.message}</S.Error>
+        >
+          <S.Error>{errors.password?.message}</S.Error>
+        </Input>
 
         <Button isPrimary text="Acessar" type="submit" />
 
