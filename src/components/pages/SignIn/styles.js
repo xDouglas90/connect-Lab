@@ -25,9 +25,13 @@ export const Form = styled.form`
 `;
 
 export const Error = styled.span`
-  color: var(--error);
+  background: var(--error);
+  color: var(--common-white);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   width: 100%;
-  height: 1px;
-  margin-top: -23px;
+  font-weight: 600;
   font-size: 0.85rem;
+  text-align: center;
+  padding: 0 1rem;
 `;

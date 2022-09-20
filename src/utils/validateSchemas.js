@@ -15,10 +15,15 @@ export const loginSchema = yup.object().shape({
 export const registerSchema = yup.object().shape({
   fullName: yup
     .string()
-    .matches(regExp.name, 'Digite um nome válido')
+    .matches(regExp.name, 'Números não são permitidos no nome')
     .min(2, 'Nome inválido')
     .required('Necessário preencher o nome completo'),
-  photoUrl: 'https://github.com/mikansc.png',
+  photoUrl: yup
+    .string()
+    .nullable()
+    .notRequired()
+    .matches(regExp.url, { message: 'URL inválida', excludeEmptyString: true })
+    .min(4, 'URL inválida'),
   email: yup
     .string()
     .matches(regExp.email, 'Digite um email válido')
@@ -33,11 +38,13 @@ export const registerSchema = yup.object().shape({
     .required('Necessário confirmação de senha'),
   phone: yup
     .string()
-    .matches(regExp.phone, 'Digite um nome válido')
-    .min(8, 'Número inválido'),
+    .matches(regExp.phone, 'Digite um número válido')
+    .min(8, 'Verifique a quantidade de números')
+    .nullable(),
   zipCode: yup
     .string()
-    .min(8, 'Deve possuir no mín. 8 caracteres (se somente nºs, senão 9)')
+    .min(8, 'Deve possuir no mín. 8 dígitos')
+    .max(9, 'Deve possuir no máx. 9 dígitos quando tiver "-"')
     .matches(regExp.BRZipCode, 'Necessário que seja um CEP válido')
     .required('Necessário preencher o CEP'),
   street: yup
@@ -60,5 +67,5 @@ export const registerSchema = yup.object().shape({
     .string()
     .min(4, 'Deve possuir no mín. 4 caractere')
     .required('Necessário preencher o estado'),
-  complement: yup.string('Necessário que seja um texto'),
+  complement: yup.string('Necessário que seja um texto').notRequired(),
 });

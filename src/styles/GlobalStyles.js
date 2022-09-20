@@ -53,12 +53,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-color: ${({ theme }) =>
-          setValueByTheme(
-            theme.title,
-            'var(--common-lt-gray)',
-            'var(--common-black)'
-          )};
+        background-color: ${({ theme }) => theme.colors.background};
         margin: 0;
         padding: 0;
     }

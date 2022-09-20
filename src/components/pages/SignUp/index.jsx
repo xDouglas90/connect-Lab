@@ -1,139 +1,303 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { axios as api } from '@service';
+import { useNavigate } from 'react-router-dom';
 
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { registerSchema } from '@utils';
+
+import { ToastContainer, toast } from 'react-toastify';
 import { Button, Input, Link, Title } from '@atoms';
 import { Layout } from '@templates';
+import { useTheme } from 'styled-components';
 
 import * as S from './styles';
+import 'react-toastify/dist/ReactToastify.min.css';
 
-const STATE_URL =
-  'https://servicodados.ibge.gov.br/api/v1/localidades/estados/';
+const STATE_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
+const REGISTER_URL = 'auth/register';
 
 export const SignUp = () => {
+  const [addressData, setAddressData] = useState(null);
   const [stateList, setStateList] = useState([]);
-  const [cityList, setCityList] = useState([]);
-  const [selectedStateId, setSelectedStateId] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const { data } = useQuery('states', async () => {
-    const response = await axios.get(`${STATE_URL}?orderBy=nome`);
-    return setStateList([...response.data]);
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(registerSchema),
+    mode: 'onSubmit',
+    reValidateMode: 'onBlur',
+    shouldFocusError: true,
+    defaultValues: useMemo(() => addressData, [addressData]),
   });
 
-  const getSelectedStateId = (e) => {
-    const inputState = stateList.filter(
-      (state) => state.nome === e.target.value
-    );
-    setSelectedStateId(inputState[0].id);
+  const redirect = useNavigate();
+  const theme = useTheme();
+
+  const { data } = useQuery(
+    'states',
+    async () => {
+      const { data } = await axios.get(`${STATE_URL}/?orderBy=nome`);
+
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+    }
+  );
+
+  useEffect(() => {
+    if (data) {
+      setStateList(data);
+    }
+  }, [data]);
+
+  const getDataByCEP = async (cep) => {
+    try {
+      if (cep.length >= 8) {
+        const { data } = await axios.get(
+          `https://viacep.com.br/ws/${cep}/json/`
+        );
+
+        return setAddressData(data);
+      }
+    } catch (error) {
+      toast.error('CEP não encontrado', {
+        autoClose: 7000,
+        position: toast.POSITION.TOP_CENTER,
+        theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+      });
+    }
+  };
+
+  const filterStateByInitials = (list, data) => {
+    const stateByInitials = list.filter((item) => item.sigla === data.uf);
+    return stateByInitials[0].nome;
   };
 
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get(
-        `${STATE_URL}${selectedStateId}/municipios`
-      );
+    if (addressData) {
+      reset({
+        street: addressData.logradouro,
+        neighborhood: addressData.bairro,
+        complement: addressData.complemento,
+        city: addressData.localidade,
+        state: filterStateByInitials(stateList, addressData),
+      });
+    }
+  }, [addressData, reset, stateList]);
 
-      setCityList(data);
-    };
-    getData();
-  }, [cityList, selectedStateId]);
+  const registerSuccess = () => {
+    toast.success('Conta criada com sucesso', {
+      autoClose: 4000,
+      position: toast.POSITION.TOP_CENTER,
+      theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+    });
+    reset(addressData);
+    setTimeout(() => {
+      redirect('/login');
+    }, 4000);
+  };
+
+  const registerFail = (errorMsg) => {
+    toast.error(errorMsg, {
+      autoClose: 5000,
+      position: toast.POSITION.TOP_CENTER,
+      theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+    });
+  };
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post(REGISTER_URL, {
+        email: data.email,
+        password: data.password,
+        fullName: data.fullName,
+        photoUrl: data.photoUrl,
+        phone: data.phone,
+        userAddress: {
+          zipCode: data.zipCode,
+          street: data.street,
+          number: data.number,
+          neighborhood: data.neighborhood,
+          city: data.city,
+          state: data.state,
+          complement: data.complement,
+        },
+      });
+
+      if (response.status === 200 || response.status === 201) {
+        registerSuccess();
+      }
+    } catch (error) {
+      registerFail(error.response.data.error);
+    }
+  };
 
   return (
     <Layout>
-      <S.Form autocomplete="off">
+      <S.Form onSubmit={handleSubmit(onSubmit)}>
+        <ToastContainer />
+
         <Title text="Cadastrar" />
 
         <S.FieldsContainer>
           <S.Column>
             <Input
               label="Nome completo*"
-              name="full-name"
               placeholder="Seu nome"
-            />
+              {...register('fullName', {
+                autoComplete: false,
+              })}
+            >
+              <S.Error role="alert">{errors.fullName?.message}</S.Error>
+            </Input>
 
             <Input
               label="URL foto perfil"
-              name="picture"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('photoUrl', {
+                autoComplete: false,
+              })}
               placeholder="Sua foto"
-            />
+            >
+              <S.Error role="alert">{errors.photoUrl?.message}</S.Error>
+            </Input>
 
             <Input
               label="Senha*"
-              name="password"
-              placeholder="Sua senha"
+              aria-invalid={errors.name ? 'true' : 'false'}
               type="password"
-            />
-
-            <Input label="CEP*" name="zip-code" placeholder="Seu CEP" />
+              {...register('password', {
+                autoComplete: false,
+              })}
+              placeholder="Sua senha"
+            >
+              <S.Error role="alert">{errors.password?.message}</S.Error>
+            </Input>
 
             <Input
-              autoComplete="off"
+              label="CEP*"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('zipCode', {
+                autoComplete: false,
+                onChange: (e) => getDataByCEP(e.target.value),
+              })}
+              placeholder="Seu CEP"
+            >
+              <S.Error role="alert">{errors.zipCode?.message}</S.Error>
+            </Input>
+
+            <Input
               label="Estado*"
-              name="state"
-              placeholder="Seu estado"
+              aria-invalid={errors.name ? 'true' : 'false'}
               list="state-name"
-              onChange={getSelectedStateId}
-            />
-            <datalist id="state-name">
-              {stateList.map((state) => (
-                <option key={state.id} value={state.nome}>
-                  {state.sigla}
-                </option>
-              ))}
-            </datalist>
+              {...register('state', {
+                autoComplete: false,
+              })}
+              placeholder="Seu estado"
+            >
+              <S.Error role="alert">{errors.state?.message}</S.Error>
+            </Input>
 
             <Input
-              autoComplete="off"
               label="Cidade*"
-              name="city"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('city', {
+                autoComplete: false,
+              })}
               placeholder="Sua cidade"
-              list="city-name"
-            />
-            <datalist id="city-name">
-              {!!cityList &&
-                cityList.map((city) => (
-                  <option key={city.id} value={city.nome} />
-                ))}
-            </datalist>
+            >
+              <S.Error role="alert">{errors.city?.message}</S.Error>
+            </Input>
 
             <Input
               label="Numero*"
-              name="number"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('number', {
+                autoComplete: false,
+              })}
               placeholder="Número de sua residência"
-              type="number"
-            />
+            >
+              <S.Error role="alert">{errors.number?.message}</S.Error>
+            </Input>
           </S.Column>
 
           <S.Column>
             <Input
               label="E-mail*"
-              name="email"
-              placeholder="Seu e-mail"
+              aria-invalid={errors.name ? 'true' : 'false'}
               type="email"
-            />
+              {...register('email', {
+                autoComplete: false,
+              })}
+              placeholder="Seu e-mail"
+            >
+              <S.Error role="alert">{errors.email?.message}</S.Error>
+            </Input>
 
-            <Input label="Telefone" name="phone" placeholder="Seu telefone" />
+            <Input
+              label="Telefone"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('phone', {
+                autoComplete: false,
+              })}
+              placeholder="Seu telefone"
+            >
+              <S.Error role="alert">{errors.phone?.message}</S.Error>
+            </Input>
 
             <Input
               label="Confirmação de senha*"
-              name="password-confirmation"
-              placeholder="Sua confirmação de senha"
+              aria-invalid={errors.name ? 'true' : 'false'}
               type="password"
-            />
+              {...register('confirmPassword', {
+                autoComplete: false,
+              })}
+              placeholder="Sua confirmação de senha"
+            >
+              <S.Error role="alert">{errors.confirmPassword?.message}</S.Error>
+            </Input>
 
             <Input
               label="Logradouro/Endereço*"
-              name="address"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('street', {
+                autoComplete: false,
+              })}
               placeholder="Seu logradouro/endereço"
-            />
+            >
+              <S.Error role="alert">{errors.street?.message}</S.Error>
+            </Input>
 
             <Input
               label="Complemento"
-              name="address-complement"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('complement', {
+                autoComplete: false,
+              })}
               placeholder="Seu complemento"
-            />
+            >
+              <S.Error role="alert">{errors.complement?.message}</S.Error>
+            </Input>
 
-            <Input label="Bairro*" name="district" placeholder="Seu bairro" />
+            <Input
+              label="Bairro*"
+              aria-invalid={errors.name ? 'true' : 'false'}
+              {...register('neighborhood', {
+                autoComplete: false,
+              })}
+              placeholder="Seu bairro"
+            >
+              <S.Error role="alert">{errors.neighborhood?.message}</S.Error>
+            </Input>
           </S.Column>
         </S.FieldsContainer>
 

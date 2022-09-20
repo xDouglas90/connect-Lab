@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Error as LoginError } from '../SignIn/styles';
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -40,10 +42,18 @@ export const FieldsContainer = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 13px;
   width: 100%;
 
   @media (min-width: 768px) {
     width: 50%;
   }
+`;
+
+export const Error = styled.span`
+  color: var(--error);
+  width: 100%;
+  height: -1px;
+  font-weight: 600;
+  font-size: 0.85rem;
 `;
