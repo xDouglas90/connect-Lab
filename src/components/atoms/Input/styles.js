@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   padding: 0px;
   width: 300px;
-  height: 54.09px;
+  height: 70px;
 
   @media (min-width: 576px) {
     width: 358px;
