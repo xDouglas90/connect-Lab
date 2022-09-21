@@ -60,6 +60,10 @@ export const Input = styled.input`
       )};
   }
 
+  &:focus ~ span {
+    width: 360px;
+  }
+
   &::placeholder {
     color: var(--common-dk-gray);
     font-size: 12px;
