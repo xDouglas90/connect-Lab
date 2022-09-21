@@ -34,7 +34,7 @@ export const ProductFullCard = ({ product, stateIcon }) => {
         <S.Info>Força do sinal: -70dBm</S.Info>
       </S.ProductInfos>
 
-      <Button text='Remover' />
+      <Button text="Remover" />
     </S.CardContainer>
   );
 };

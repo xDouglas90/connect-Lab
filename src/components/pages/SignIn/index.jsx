@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -24,7 +24,7 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
-    mode: 'onChange',
+    mode: 'onSubmit',
     reValidateMode: 'onBlur',
     shouldFocusError: true,
   });
@@ -36,10 +36,14 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (isAuth) {
-      toast('Logado com sucesso');
-      redirect('/inicio');
+      toast.success('Logado com sucesso');
+      redirect('/inicio', {
+        autoClose: 7000,
+        position: toast.POSITION.TOP_CENTER,
+        theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+      });
     }
-  }, [isAuth, redirect]);
+  }, [isAuth, redirect, theme.title]);
 
   useEffect(() => {
     if (errorMsg) {

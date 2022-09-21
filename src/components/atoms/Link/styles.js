@@ -6,11 +6,7 @@ import { setValueByTheme } from '@utils';
 
 export const Link = styled(RouterLink)`
   color: ${({ theme }) =>
-    setValueByTheme(
-      theme.title,
-      'var(--common-black)',
-      'var(--common-white)'
-    )};
+    setValueByTheme(theme.title, 'var(--common-black)', 'var(--common-white)')};
   cursor: pointer;
   font-weight: 400;
   font-size: 14px;

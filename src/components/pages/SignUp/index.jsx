@@ -50,7 +50,7 @@ export const SignUp = () => {
     {
       refetchOnWindowFocus: false,
       staleTime: Infinity,
-    }
+    },
   );
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export const SignUp = () => {
     try {
       if (cep.length >= 8) {
         const { data } = await axios.get(
-          `https://viacep.com.br/ws/${cep}/json/`
+          `https://viacep.com.br/ws/${cep}/json/`,
         );
 
         return setAddressData(data);

@@ -9,14 +9,14 @@ export const Container = styled.section`
     setValueByTheme(
       theme.title,
       'var(--common-white)',
-      'var(--common-dk-gray)'
+      'var(--common-dk-gray)',
     )};
   border-radius: 10px;
   box-shadow: ${({ theme }) =>
     setValueByTheme(
       theme.title,
       '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      '0 4px 4px rgba(129,214,187, 0.27)'
+      '0 4px 4px rgba(129,214,187, 0.27)',
     )};
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@ export const UserCity = styled.strong`
     setValueByTheme(
       theme.title,
       'var(--common-dk-gray)',
-      'var(--common-white)'
+      'var(--common-white)',
     )};
   font-size: 32px;
   font-weight: 400;

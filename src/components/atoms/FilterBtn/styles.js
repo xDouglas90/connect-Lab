@@ -23,7 +23,7 @@ export const Button = styled.button`
       setValueByTheme(
         theme.title,
         '2px 2px 2px rgba(0, 0, 0, 0.25)',
-        '0 4px 4px rgba(129,214,187, 0.27)'
+        '0 4px 4px rgba(129,214,187, 0.27)',
       )};
     transform: scale(1.05);
   }
