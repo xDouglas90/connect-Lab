@@ -53,10 +53,9 @@ export const ProductFigure = styled.figure`
   border: 1px solid
     ${({ theme }) =>
       setValueByTheme(theme.title, 'var(--common-white)', 'var(--secondary)')};
-  border-radius: 10px;
-  height: 80px;
-  padding: 5px;
-  width: 80px;
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
 `;
 
 export const ProductImg = styled.img`
@@ -70,7 +69,7 @@ export const ProductInfos = styled.div`
   justify-content: center;
   gap: 4px;
   height: 80px;
-  max-width: 155px;
+  max-width: 173px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: '...';

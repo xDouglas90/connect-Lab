@@ -36,12 +36,15 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (isAuth) {
-      toast.success('Logado com sucesso');
-      redirect('/inicio', {
-        autoClose: 7000,
+      toast.success('Logado com sucesso', {
+        autoClose: 3000,
         position: toast.POSITION.TOP_CENTER,
         theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
       });
+
+      setTimeout(() => {
+        redirect('/');
+      }, 3500);
     }
   }, [isAuth, redirect, theme.title]);
 
@@ -86,7 +89,7 @@ export const SignIn = () => {
 
         <Button isPrimary text="Acessar" type="submit" />
 
-        <Link text="Cadastrar" url="/registro" />
+        <Link text="Cadastrar" onClick={() => redirect('/registro')} />
       </S.Form>
     </Layout>
   );

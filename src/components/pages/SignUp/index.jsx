@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { axios as api } from '@service';
+import { createUser } from '@service';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,6 @@ import * as S from './styles';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const STATE_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-const REGISTER_URL = 'auth/register';
 
 export const SignUp = () => {
   const [addressData, setAddressData] = useState(null);
@@ -116,22 +115,7 @@ export const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.post(REGISTER_URL, {
-        email: data.email,
-        password: data.password,
-        fullName: data.fullName,
-        photoUrl: data.photoUrl,
-        phone: data.phone,
-        userAddress: {
-          zipCode: data.zipCode,
-          street: data.street,
-          number: data.number,
-          neighborhood: data.neighborhood,
-          city: data.city,
-          state: data.state,
-          complement: data.complement,
-        },
-      });
+      const response = await createUser(data);
 
       if (response.status === 200 || response.status === 201) {
         registerSuccess();
@@ -303,7 +287,7 @@ export const SignUp = () => {
 
         <Button isPrimary text="Cadastrar" type="submit" />
 
-        <Link text="Login" url="/login" />
+        <Link text="Login" onClick={() => redirect('/login')} />
       </S.Form>
     </Layout>
   );

@@ -13,5 +13,5 @@ export const FilterBtn = ({ text, handleFilterSelect, selected }) => {
 FilterBtn.propTypes = {
   text: PropTypes.string.isRequired,
   handleFilterSelect: PropTypes.func.isRequired,
-  selected: PropTypes.bool,
+  selected: PropTypes.bool.isRequired,
 };

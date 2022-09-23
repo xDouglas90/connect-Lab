@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { products } from '@utils';
+import { useEffect, useState } from 'react';
+import { useAuthContext } from '@contexts';
+import { getUserDevices } from '@service';
 
 import { Layout } from '@templates';
 import { ProductList, ProductModal, WeatherInfo } from '@organisms';
@@ -12,11 +13,29 @@ import * as S from './styles';
 export const Home = () => {
   const [isProductModalOpen, setProductModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
+  const { userToken, user } = useAuthContext();
+  const [userDevicesList, setUserDevicesList] = useState([]);
+
+  useEffect(() => {
+    const getListFromAPI = async () => {
+      try {
+        const response = await getUserDevices(user._id, userToken);
+
+        setUserDevicesList([...response.data]);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+
+    getListFromAPI();
+  }, [user._id, userDevicesList, userToken]);
 
   const handleOpenProductModal = (e) => {
     const selectedEl = e.target.dataset.id;
 
-    const product = products.filter((item) => item.id === selectedEl);
+    const product = userDevicesList.filter(
+      (item) => item.device._id === selectedEl,
+    );
 
     setProductModalOpen(true);
     setSelectedProduct(...product);
@@ -30,11 +49,11 @@ export const Home = () => {
         <WeatherInfo />
         <FilterGroup />
         <ProductList>
-          {products.map((product) => (
+          {userDevicesList.map((product) => (
             <ProductCard
-              key={product.id}
+              key={product._id}
               product={product}
-              stateIcon={product.state === 'OFF' ? offIcon : onIcon}
+              stateIcon={!product.is_on ? offIcon : onIcon}
               onClick={(e) => handleOpenProductModal(e)}
             />
           ))}
