@@ -1,4 +1,17 @@
-import axios from './api/axios';
+import {
+  api,
+  createSession,
+  createUser,
+  getUserDevices,
+  getUserLocations,
+} from './api/api';
 import { queryClient } from './api/queryClient';
 
-export { axios, queryClient };
+export {
+  api,
+  createSession,
+  createUser,
+  getUserDevices,
+  getUserLocations,
+  queryClient,
+};
