@@ -53,7 +53,7 @@ export const ProductFigure = styled.figure`
   border: 1px solid
     ${({ theme }) =>
       setValueByTheme(theme.title, 'var(--common-white)', 'var(--secondary)')};
-  border-radius: 50%;
+  border-radius: 4px;
   height: 90px;
   width: 90px;
 `;
