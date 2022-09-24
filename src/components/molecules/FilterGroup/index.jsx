@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types'; 
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '@contexts';
 import { getUserLocations } from '@service';
@@ -40,4 +40,4 @@ export const FilterGroup = () => {
   );
 };
 
-FilterGroup.propTypes = {};
+// FilterGroup.propTypes = {};

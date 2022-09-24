@@ -1,5 +1,4 @@
 import { NavLink } from '@atoms';
-import PropTypes from 'prop-types';
 
 import * as S from './styles';
 
@@ -20,5 +19,3 @@ export const NavBar = () => {
     </S.NavBar>
   );
 };
-
-NavBar.propTypes = {};
