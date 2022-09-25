@@ -2,19 +2,21 @@ import styled from 'styled-components';
 
 import { setValueByTheme } from '@utils';
 
+import { Title } from '../../atoms/Title/styles';
+
 export const CardContainer = styled.li`
   background: ${({ theme }) =>
     setValueByTheme(
       theme.title,
       'var(--common-white)',
-      'var(--common-dk-gray)'
+      'var(--common-dk-gray)',
     )};
   border-radius: 10px;
   box-shadow: ${({ theme }) =>
     setValueByTheme(
       theme.title,
       '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      '0 4px 4px rgba(129,214,187, 0.27)'
+      '0 4px 4px rgba(129,214,187, 0.27)',
     )};
   display: flex;
   align-items: center;
@@ -31,6 +33,10 @@ export const Header = styled.header`
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+
+  ${Title} {
+    text-align: center;
+  }
 `;
 
 export const ProductFigure = styled.figure`
@@ -87,4 +93,14 @@ export const InfosTitle = styled.strong`
 export const Info = styled.p`
   font-size: 14px;
   line-height: 18px;
+`;
+
+export const StateBtn = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;

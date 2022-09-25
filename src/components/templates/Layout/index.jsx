@@ -14,7 +14,7 @@ export const Layout = ({ children }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const loggedLocations = ['/inicio', '/perfil', '/dispositivos'];
+  const loggedLocations = ['/', '/perfil', '/dispositivos'];
 
   return (
     <>

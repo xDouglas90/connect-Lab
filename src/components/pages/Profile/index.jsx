@@ -1,9 +1,29 @@
+import { useAuthContext } from '@contexts';
+
+import { toast } from 'react-toastify';
+import { useTheme } from 'styled-components';
 import { Button, Link, Title } from '@atoms';
 import { Layout } from '@templates';
 
 import * as S from './styles';
 
 export const Profile = () => {
+  const { logout } = useAuthContext();
+
+  const theme = useTheme();
+
+  const handleLogout = () => {
+    toast.success('Você deslogou de sua conta', {
+      autoClose: 3000,
+      position: toast.POSITION.TOP_CENTER,
+      theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+    });
+
+    setTimeout(() => {
+      logout();
+    }, 3500);
+  };
+
   return (
     <Layout>
       <S.Container>
@@ -32,7 +52,7 @@ export const Profile = () => {
 
         <Button isPrimary text="Editar" />
 
-        <Link text="Sair" url="/" />
+        <Link text="Sair" url="/" onClick={handleLogout} />
       </S.Container>
     </Layout>
   );

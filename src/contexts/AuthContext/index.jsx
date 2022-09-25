@@ -1,35 +1,45 @@
-import { createContext, useContext, useState } from 'react';
-import { axios } from '@service';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { api, createSession } from '@service';
 import PropTypes from 'prop-types';
-
-const LOGIN_URL = 'auth/login';
 
 const AuthContext = createContext();
 
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [authUser, setAuthUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [isFetching, setIsFetching] = useState(true);
+  const [userToken, setUserToken] = useState(null);
+
+  useEffect(() => {
+    const recoveredUser = sessionStorage.getItem('user');
+    const recoveredToken = sessionStorage.getItem('token');
+
+    if (recoveredUser) {
+      setUser(JSON.parse(recoveredUser));
+    }
+
+    if (recoveredToken) {
+      setUserToken(recoveredToken);
+    }
+
+    setIsFetching(false);
+  }, []);
 
   const handleLogin = async (email, password) => {
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({
-          email,
-          password,
-        }),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await createSession(email, password);
 
-      setAuthUser({ ...response?.data });
+      setUser({ ...response?.data });
+      setUserToken(response.token);
       setIsFetching(false);
+
+      const loggedUser = JSON.stringify(response?.data.user);
+      const token = response?.data.token;
+
+      sessionStorage.setItem('user', loggedUser);
+      sessionStorage.setItem('token', token);
     } catch (error) {
       if (!error?.response) {
         setErrorMsg('Sem resposta do servidor');
@@ -41,14 +51,24 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const handleLogout = () => setAuthUser({});
+  const logout = () => {
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+
+    setUser(null);
+    setUserToken(null);
+
+    api.defaults.headers.post['Content-Type'] = null;
+  };
 
   return (
     <AuthContext.Provider
       value={{
-        isAuth: !!authUser,
+        isAuth: !!user,
+        user,
+        userToken,
         handleLogin,
-        handleLogout,
+        logout,
         isFetching,
         errorMsg,
         setErrorMsg,

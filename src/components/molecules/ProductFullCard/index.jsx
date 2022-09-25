@@ -4,42 +4,61 @@ import { Button, Title } from '@atoms';
 
 import * as S from './styles';
 
-export const ProductFullCard = ({ product, stateIcon }) => {
+export const ProductFullCard = ({
+  product,
+  stateIcon,
+  id,
+  handleStateToggle,
+  handleRemoveDevice,
+}) => {
   return (
     <S.CardContainer>
       <S.Header>
-        <Title text={product.name} />
+        <Title text={product.device.name} />
         <S.Info>{product.manufacturer}</S.Info>
       </S.Header>
 
       <S.ProductFigure>
-        <S.ProductImg src={product.image} />
+        <S.ProductImg src={product.device.photoUrl} />
       </S.ProductFigure>
 
       <S.StateInfo>
-        {product.state === 'OFF' ? (
-          <S.State>Dispositivo Desligado</S.State>
-        ) : (
+        {product.is_on ? (
           <S.State>Dispositivo Ligado</S.State>
+        ) : (
+          <S.State>Dispositivo Desligado</S.State>
         )}
-        <S.StateIcon src={stateIcon} />
+        <S.StateBtn
+          data-id={id}
+          onClick={(e) => handleStateToggle(e)}
+          title="Clique para alterar status"
+        >
+          <S.StateIcon src={stateIcon} />
+        </S.StateBtn>
+      </S.StateInfo>
+
+      <S.StateInfo>
+        <S.Info>{product.local.description}</S.Info> |
+        <S.Info>{product.room}</S.Info>
       </S.StateInfo>
 
       <S.ProductInfos>
         <S.InfosTitle>Informações do dispositivo</S.InfosTitle>
-        <S.Info>ID virtual: 1ea71523f6f296c29711</S.Info>
-        <S.Info>Endereço IP: 138.204.21.221</S.Info>
-        <S.Info>Endereço MAC: 87:e3:34:ff:ed:34</S.Info>
+        <S.Info>ID virtual: {product.device.info.virtual_id}</S.Info>
+        <S.Info>Endereço IP: {product.device.info.ip_address}</S.Info>
+        <S.Info>Endereço MAC: {product.device.info.mac_address}</S.Info>
         <S.Info>Fuso horário: América/Sao_Paulo</S.Info>
-        <S.Info>Força do sinal: -70dBm</S.Info>
+        <S.Info>Força do sinal: {product.device.info.signal}</S.Info>
       </S.ProductInfos>
-
-      <Button text='Remover' />
+      <Button text="Remover" onClick={handleRemoveDevice} />
     </S.CardContainer>
   );
 };
 
 ProductFullCard.propTypes = {
+  id: PropTypes.string.isRequired,
   product: PropTypes.object.isRequired,
   stateIcon: PropTypes.string.isRequired,
+  handleStateToggle: PropTypes.func.isRequired,
+  handleRemoveDevice: PropTypes.func.isRequired,
 };

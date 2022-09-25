@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -7,7 +7,7 @@ import { loginSchema } from '@utils';
 
 import { useAuthContext } from '@contexts';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { useTheme } from 'styled-components';
 
@@ -15,7 +15,6 @@ import { Layout } from '@templates';
 import { Button, Input, Link, Title } from '@atoms';
 
 import * as S from './styles';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 export const SignIn = () => {
   const {
@@ -24,7 +23,7 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(loginSchema),
-    mode: 'onChange',
+    mode: 'onSubmit',
     reValidateMode: 'onBlur',
     shouldFocusError: true,
   });
@@ -36,10 +35,17 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (isAuth) {
-      toast('Logado com sucesso');
-      redirect('/inicio');
+      toast.success('Logado com sucesso', {
+        autoClose: 3000,
+        position: toast.POSITION.TOP_CENTER,
+        theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+      });
+
+      setTimeout(() => {
+        redirect('/');
+      }, 3500);
     }
-  }, [isAuth, redirect]);
+  }, [isAuth, redirect, theme.title]);
 
   useEffect(() => {
     if (errorMsg) {
@@ -57,8 +63,6 @@ export const SignIn = () => {
 
   return (
     <Layout>
-      <ToastContainer />
-
       <S.Form onSubmit={handleSubmit(handleLoginSubmit)}>
         <Title text="Acessar" />
 
@@ -82,7 +86,7 @@ export const SignIn = () => {
 
         <Button isPrimary text="Acessar" type="submit" />
 
-        <Link text="Cadastrar" url="/registro" />
+        <Link text="Cadastrar" onClick={() => redirect('/registro')} />
       </S.Form>
     </Layout>
   );

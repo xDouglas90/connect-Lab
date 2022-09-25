@@ -7,14 +7,14 @@ export const CardContainer = styled.li`
     setValueByTheme(
       theme.title,
       'var(--common-white)',
-      'var(--common-dk-gray)'
+      'var(--common-dk-gray)',
     )};
   border-radius: 10px;
   box-shadow: ${({ theme }) =>
     setValueByTheme(
       theme.title,
       '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      '0 4px 4px rgba(129,214,187, 0.27)'
+      '0 4px 4px rgba(129,214,187, 0.27)',
     )};
   display: flex;
   align-items: center;
@@ -31,14 +31,14 @@ export const CardContainer = styled.li`
         setValueByTheme(
           theme.title,
           '0px 4px 10px rgba(0, 0, 0, 0.45)',
-          '0 8px 10px 0 rgba(129,214,187, 0.27)'
+          '0 8px 10px 0 rgba(129,214,187, 0.27)',
         )};
       transform: scale(1.05);
     }
   }
 `;
 
-export const CardWrapper = styled.button`
+export const CardWrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -53,14 +53,22 @@ export const ProductFigure = styled.figure`
   border: 1px solid
     ${({ theme }) =>
       setValueByTheme(theme.title, 'var(--common-white)', 'var(--secondary)')};
-  border-radius: 10px;
-  height: 80px;
-  padding: 5px;
-  width: 80px;
+  border-radius: 4px;
+  height: 90px;
+  width: 90px;
 `;
 
 export const ProductImg = styled.img`
   height: 100%;
+`;
+
+export const MoreInfoBtn = styled.button`
+  background: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ProductInfos = styled.div`
@@ -70,7 +78,7 @@ export const ProductInfos = styled.div`
   justify-content: center;
   gap: 4px;
   height: 80px;
-  max-width: 155px;
+  max-width: 173px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: '...';
@@ -86,6 +94,16 @@ export const ProductChars = styled.div`
 
 export const ProductChar = styled.span`
   font-size: 1rem;
+`;
+
+export const StateBtn = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const StateIcon = styled.img`

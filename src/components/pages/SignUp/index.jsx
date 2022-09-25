@@ -1,28 +1,25 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { axios as api } from '@service';
+import { createUser } from '@service';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '@utils';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Button, Input, Link, Title } from '@atoms';
 import { Layout } from '@templates';
 import { useTheme } from 'styled-components';
 
 import * as S from './styles';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 const STATE_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
-const REGISTER_URL = 'auth/register';
 
 export const SignUp = () => {
   const [addressData, setAddressData] = useState(null);
   const [stateList, setStateList] = useState([]);
-  const [errorMsg, setErrorMsg] = useState('');
 
   const {
     register,
@@ -50,7 +47,7 @@ export const SignUp = () => {
     {
       refetchOnWindowFocus: false,
       staleTime: Infinity,
-    }
+    },
   );
 
   useEffect(() => {
@@ -63,7 +60,7 @@ export const SignUp = () => {
     try {
       if (cep.length >= 8) {
         const { data } = await axios.get(
-          `https://viacep.com.br/ws/${cep}/json/`
+          `https://viacep.com.br/ws/${cep}/json/`,
         );
 
         return setAddressData(data);
@@ -116,22 +113,7 @@ export const SignUp = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.post(REGISTER_URL, {
-        email: data.email,
-        password: data.password,
-        fullName: data.fullName,
-        photoUrl: data.photoUrl,
-        phone: data.phone,
-        userAddress: {
-          zipCode: data.zipCode,
-          street: data.street,
-          number: data.number,
-          neighborhood: data.neighborhood,
-          city: data.city,
-          state: data.state,
-          complement: data.complement,
-        },
-      });
+      const response = await createUser(data);
 
       if (response.status === 200 || response.status === 201) {
         registerSuccess();
@@ -144,8 +126,6 @@ export const SignUp = () => {
   return (
     <Layout>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
-        <ToastContainer />
-
         <Title text="Cadastrar" />
 
         <S.FieldsContainer>
@@ -303,7 +283,7 @@ export const SignUp = () => {
 
         <Button isPrimary text="Cadastrar" type="submit" />
 
-        <Link text="Login" url="/login" />
+        <Link text="Login" onClick={() => redirect('/login')} />
       </S.Form>
     </Layout>
   );

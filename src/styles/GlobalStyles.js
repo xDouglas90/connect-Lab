@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 import { colors } from '@styles';
-import { setValueByTheme } from '@utils';
 
 export const GlobalStyles = createGlobalStyle`
     :root {  

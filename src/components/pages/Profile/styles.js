@@ -18,7 +18,7 @@ export const Container = styled.article`
     setValueByTheme(
       theme.title,
       'var(--common-white)',
-      'rgba( 255, 255, 255, 0.25 )'
+      'rgba( 255, 255, 255, 0.25 )',
     )};
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -26,7 +26,7 @@ export const Container = styled.article`
     setValueByTheme(
       theme.title,
       '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      '0 4px 4px rgba(129,214,187, 0.27)'
+      '0 4px 4px rgba(129,214,187, 0.27)',
     )};
   border-radius: 10px;
 
@@ -57,7 +57,7 @@ export const AvatarPic = styled.div`
     setValueByTheme(
       theme.title,
       'var(--common-lt-gray)',
-      'var(--common-white)'
+      'var(--common-white)',
     )};
   border-radius: 50%;
   width: 58.82px;
@@ -85,7 +85,7 @@ export const UserName = styled.strong`
     setValueByTheme(
       theme.title,
       'var(--common-dk-gray)',
-      'var(--common-white)'
+      'var(--common-white)',
     )};
   font-weight: 700;
   font-size: 14px;
@@ -129,13 +129,13 @@ export const AddressTitle = styled.strong`
       setValueByTheme(
         theme.title,
         'var(--common-dk-gray)',
-        'var(--common-white)'
+        'var(--common-white)',
       )};
   color: ${({ theme }) =>
     setValueByTheme(
       theme.title,
       'var(--common-dk-gray)',
-      'var(--common-white)'
+      'var(--common-white)',
     )};
   font-weight: 700;
   font-size: 14px;
@@ -148,7 +148,7 @@ export const AddressZipCode = styled.p`
     setValueByTheme(
       theme.title,
       'var(--common-dk-gray)',
-      'var(--common-white)'
+      'var(--common-white)',
     )};
   font-weight: 400;
   font-size: 12px;
@@ -159,7 +159,7 @@ export const Address = styled.p`
     setValueByTheme(
       theme.title,
       'var(--common-dk-gray)',
-      'var(--common-white)'
+      'var(--common-white)',
     )};
   font-size: 10px;
 `;

@@ -4,35 +4,53 @@ import { CardHeading } from '@atoms';
 
 import * as S from './styles';
 
-export const ProductCard = ({ product, stateIcon, onClick }) => {
+export const ProductCard = ({
+  product,
+  id,
+  stateIcon,
+  handleStateToggle,
+  handleOpenDeviceModal,
+}) => {
   return (
     <S.CardContainer>
-      <S.CardWrapper
-        onClick={onClick}
-        data-id={product.id}
-        title="Clique para mais informações"
-      >
-        <S.ProductFigure data-id={product.id}>
-          <S.ProductImg data-id={product.id} src={product.image} />
+      <S.CardWrapper>
+        <S.ProductFigure>
+          <S.ProductImg src={product.device.photoUrl} />
         </S.ProductFigure>
-        <S.ProductInfos data-id={product.id}>
-          <CardHeading id={product.id} text={product.name} />
-          <S.ProductChars data-id={product.id}>
-            <S.ProductChar data-id={product.id}>{product.place}</S.ProductChar>
-            <S.ProductChar data-id={product.id}>|</S.ProductChar>
-            <S.ProductChar data-id={product.id}>{product.room}</S.ProductChar>
-            <S.ProductChar data-id={product.id}>|</S.ProductChar>
-            <S.ProductChar data-id={product.id}>{product.state}</S.ProductChar>
+        <S.ProductInfos>
+          <S.MoreInfoBtn
+            data-id={id}
+            onClick={(e) => handleOpenDeviceModal(e)}
+            title="Clique no nome para mais informações do dispositivo"
+          >
+            <CardHeading id={product._id} text={product.device.name} />
+          </S.MoreInfoBtn>
+          <S.ProductChars>
+            <S.ProductChar>{product.local.description}</S.ProductChar>
+            <S.ProductChar>|</S.ProductChar>
+            <S.ProductChar>{product.room}</S.ProductChar>
+            <S.ProductChar>|</S.ProductChar>
+            <S.ProductChar>
+              {product.is_on ? 'Ligado' : 'Desligado'}
+            </S.ProductChar>
           </S.ProductChars>
         </S.ProductInfos>
-        <S.StateIcon data-id={product.id} src={stateIcon} />
+        <S.StateBtn
+          data-id={id}
+          onClick={(e) => handleStateToggle(e)}
+          title="Clique para alterar status"
+        >
+          <S.StateIcon src={stateIcon} />
+        </S.StateBtn>
       </S.CardWrapper>
     </S.CardContainer>
   );
 };
 
 ProductCard.propTypes = {
-  onClick: PropTypes.func,
   product: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   stateIcon: PropTypes.string.isRequired,
+  handleStateToggle: PropTypes.func.isRequired,
+  handleOpenDeviceModal: PropTypes.func.isRequired,
 };

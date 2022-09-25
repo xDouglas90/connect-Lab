@@ -45,7 +45,7 @@ export const Input = styled.input`
       setValueByTheme(
         theme.title,
         'var(--common-dk-gray)',
-        colors.secondary.main
+        colors.secondary.main,
       )};
   border-radius: 3px;
   padding: 5px 10px;
@@ -56,8 +56,12 @@ export const Input = styled.input`
       setValueByTheme(
         theme.title,
         `0 0 0 2px ${colors.primary.light}`,
-        `0 0 0 2px ${colors.secondary.light}`
+        `0 0 0 2px ${colors.secondary.light}`,
       )};
+  }
+
+  &:focus ~ span {
+    width: 360px;
   }
 
   &::placeholder {
@@ -81,7 +85,7 @@ export const Select = styled.select`
       setValueByTheme(
         theme.title,
         'var(--common-dk-gray)',
-        colors.secondary.main
+        colors.secondary.main,
       )};
   border-radius: 3px;
   color: var(--common-dk-gray);
@@ -94,7 +98,7 @@ export const Select = styled.select`
       setValueByTheme(
         theme.title,
         `0 0 0 2px ${colors.primary.light}`,
-        `0 0 0 2px ${colors.secondary.light}`
+        `0 0 0 2px ${colors.secondary.light}`,
       )};
   }
 `;

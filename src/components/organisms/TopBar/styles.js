@@ -9,7 +9,7 @@ export const Header = styled.header`
     setValueByTheme(
       theme.title,
       '0px 2px 4px rgba(0, 0, 0, 0.25)',
-      '0 4px 4px rgba(129,214,187, 0.27)'
+      '0 4px 4px rgba(129,214,187, 0.27)',
     )};
   display: flex;
   flex-direction: column;
@@ -19,8 +19,8 @@ export const Header = styled.header`
   padding: 6px 0px 40px;
 
   @media (min-width: 768px) {
-    height: fit-content;
+    height: 6rem;
     flex-direction: row;
-    padding: 6px 40px;
+    padding: 0 1rem;
   }
 `;

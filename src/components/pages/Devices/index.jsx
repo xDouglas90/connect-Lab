@@ -2,11 +2,7 @@ import { useState } from 'react';
 
 import { Layout } from '@templates';
 import { AddDeviceModal, ProductList } from '@organisms';
-import {
-  FilterGroup,
-  DeviceCard,
-  SearchField,
-} from '@molecules';
+import { FilterGroup, DeviceCard, SearchField } from '@molecules';
 
 import * as S from './styles';
 import { Title } from '@atoms';
@@ -19,7 +15,6 @@ export const Devices = () => {
 
   const handleOpenAddDeviceModal = (e) => {
     const selectedEl = e.target.dataset.id;
-    console.log(selectedEl);
 
     const product = products.filter((item) => item.id === selectedEl);
 
