@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import { Layout } from '@templates';
 import { AddDeviceModal, ProductList } from '@organisms';
-import { FilterGroup, DeviceCard, SearchField } from '@molecules';
-
-import * as S from './styles';
+import { DeviceCard, SearchField } from '@molecules';
 import { Title } from '@atoms';
 import { products } from '@utils';
+
+import * as S from './styles';
 
 export const Devices = () => {
   const [isAddDeviceModalOpen, setAddDeviceModalOpen] = useState(false);
@@ -45,8 +45,6 @@ export const Devices = () => {
           onSearchTerm={handleSubmitSearchTerm}
           term={searchTerm}
         />
-
-        <FilterGroup />
 
         <ProductList>
           {products.map((product) => (

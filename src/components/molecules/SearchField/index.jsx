@@ -1,17 +1,14 @@
-import { Button, Input } from '@atoms';
+import { Button } from '@atoms';
 import PropTypes from 'prop-types';
 
 import * as S from './styles';
 
-export const SearchField = ({ onSearchTerm, onTyping, term }) => {
+export const SearchField = ({ name, onSearchTerm }) => {
   return (
     <S.Container>
-      <Input
-        label="Nome do dispositivo"
-        name="search-device"
+      <S.Input
+        name={name}
         placeholder="Buscar pelo nome do dispositivo"
-        value={term}
-        onChange={onTyping}
       />
       <Button text="Buscar" type="submit" onClick={onSearchTerm} isPrimary />
     </S.Container>
@@ -19,7 +16,6 @@ export const SearchField = ({ onSearchTerm, onTyping, term }) => {
 };
 
 SearchField.propTypes = {
-  term: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   onSearchTerm: PropTypes.func.isRequired,
-  onTyping: PropTypes.func.isRequired,
 };
