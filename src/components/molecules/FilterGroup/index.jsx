@@ -1,43 +1,27 @@
-// import PropTypes from 'prop-types'; 
-import { useEffect, useState } from 'react';
-import { useAuthContext } from '@contexts';
-import { getUserLocations } from '@service';
+import PropTypes from 'prop-types';
 
 import { FilterBtn } from '@atoms';
 
 import * as S from './styles';
 
-export const FilterGroup = () => {
-  const { userToken } = useAuthContext();
-  const [locationsList, setLocationsList] = useState([]);
-
-  useEffect(() => {
-    const getListFromAPI = async () => {
-      try {
-        const response = await getUserLocations(userToken);
-
-        setLocationsList([...response.data]);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-
-    getListFromAPI();
-  }, [userToken]);
-
+export const FilterGroup = ({ locationsList, handleSelect }) => {
   return (
     <S.BtnGroup>
-      <FilterBtn text="todos" handleFilterSelect={() => {}} selected={true} />
-      {locationsList.map((item) => (
-        <FilterBtn
-          key={item._id}
-          text={item.description}
-          handleFilterSelect={() => {}}
-          selected={false}
-        />
-      ))}
+      <FilterBtn id="all" text="todos" handleFilterSelect={handleSelect} />
+      {locationsList &&
+        locationsList.map((item) => (
+          <FilterBtn
+            key={item._id}
+            id={item._id}
+            text={item.description}
+            handleFilterSelect={handleSelect}
+          />
+        ))}
     </S.BtnGroup>
   );
 };
 
-// FilterGroup.propTypes = {};
+FilterGroup.propTypes = {
+  locationsList: PropTypes.array.isRequired,
+  handleSelect: PropTypes.func.isRequired,
+};

@@ -19,8 +19,8 @@ export const Header = styled.header`
   padding: 6px 0px 40px;
 
   @media (min-width: 768px) {
-    height: fit-content;
+    height: 6rem;
     flex-direction: row;
-    padding: 6px 40px;
+    padding: 0 1rem;
   }
 `;

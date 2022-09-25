@@ -8,13 +8,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '@utils';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Button, Input, Link, Title } from '@atoms';
 import { Layout } from '@templates';
 import { useTheme } from 'styled-components';
 
 import * as S from './styles';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 const STATE_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
 
@@ -127,8 +126,6 @@ export const SignUp = () => {
   return (
     <Layout>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
-        <ToastContainer />
-
         <Title text="Cadastrar" />
 
         <S.FieldsContainer>

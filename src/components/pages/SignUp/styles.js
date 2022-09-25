@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Error as LoginError } from '../SignIn/styles';
-
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

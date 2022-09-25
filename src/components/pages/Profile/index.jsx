@@ -1,6 +1,6 @@
 import { useAuthContext } from '@contexts';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useTheme } from 'styled-components';
 import { Button, Link, Title } from '@atoms';
 import { Layout } from '@templates';
@@ -27,7 +27,6 @@ export const Profile = () => {
   return (
     <Layout>
       <S.Container>
-        <ToastContainer />
         <Title text="Meu perfil" />
 
         <S.ProfileHeader>

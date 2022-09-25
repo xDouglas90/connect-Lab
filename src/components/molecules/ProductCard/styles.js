@@ -38,7 +38,7 @@ export const CardContainer = styled.li`
   }
 `;
 
-export const CardWrapper = styled.button`
+export const CardWrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
@@ -60,6 +60,15 @@ export const ProductFigure = styled.figure`
 
 export const ProductImg = styled.img`
   height: 100%;
+`;
+
+export const MoreInfoBtn = styled.button`
+  background: transparent;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const ProductInfos = styled.div`
@@ -85,6 +94,16 @@ export const ProductChars = styled.div`
 
 export const ProductChar = styled.span`
   font-size: 1rem;
+`;
+
+export const StateBtn = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const StateIcon = styled.img`

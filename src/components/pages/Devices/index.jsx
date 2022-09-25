@@ -15,7 +15,6 @@ export const Devices = () => {
 
   const handleOpenAddDeviceModal = (e) => {
     const selectedEl = e.target.dataset.id;
-    console.log(selectedEl);
 
     const product = products.filter((item) => item.id === selectedEl);
 

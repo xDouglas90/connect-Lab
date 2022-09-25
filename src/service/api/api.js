@@ -5,7 +5,7 @@ export const api = axios.create({
 });
 
 export const createSession = async (email, password) => {
-  return api.post(
+  return await api.post(
     'auth/login',
     JSON.stringify({
       email,
@@ -20,7 +20,7 @@ export const createSession = async (email, password) => {
 };
 
 export const createUser = async (data) => {
-  return api.post(
+  return await api.post(
     'auth/register',
     JSON.stringify({
       email: data.email,
@@ -47,7 +47,7 @@ export const createUser = async (data) => {
 };
 
 export const getUserLocations = async (token) => {
-  return api.get('locals', {
+  return await api.get('locals', {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -55,9 +55,33 @@ export const getUserLocations = async (token) => {
 };
 
 export const getUserDevices = async (id, token) => {
-  return api.get(`userDevices/user/${id}`, {
+  return await api.get(`userDevices/user/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const putDeviceState = async (id, token, state) => {
+  return await api.put(
+    `userDevices/${id}`,
+    JSON.stringify({
+      is_on: state,
+    }),
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+};
+
+export const deleteDevice = async (id, token) => {
+  return await api.delete(`userDevices/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
     },
   });
 };

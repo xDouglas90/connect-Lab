@@ -4,15 +4,27 @@ import { CardHeading } from '@atoms';
 
 import * as S from './styles';
 
-export const ProductCard = ({ product, stateIcon, onClick }) => {
+export const ProductCard = ({
+  product,
+  id,
+  stateIcon,
+  handleStateToggle,
+  handleOpenDeviceModal,
+}) => {
   return (
     <S.CardContainer>
-      <S.CardWrapper onClick={onClick} title="Clique para mais informações">
+      <S.CardWrapper>
         <S.ProductFigure>
           <S.ProductImg src={product.device.photoUrl} />
         </S.ProductFigure>
         <S.ProductInfos>
-          <CardHeading id={product._id} text={product.device.name} />
+          <S.MoreInfoBtn
+            data-id={id}
+            onClick={(e) => handleOpenDeviceModal(e)}
+            title="Clique no nome para mais informações do dispositivo"
+          >
+            <CardHeading id={product._id} text={product.device.name} />
+          </S.MoreInfoBtn>
           <S.ProductChars>
             <S.ProductChar>{product.local.description}</S.ProductChar>
             <S.ProductChar>|</S.ProductChar>
@@ -23,14 +35,22 @@ export const ProductCard = ({ product, stateIcon, onClick }) => {
             </S.ProductChar>
           </S.ProductChars>
         </S.ProductInfos>
-        <S.StateIcon src={stateIcon} />
+        <S.StateBtn
+          data-id={id}
+          onClick={(e) => handleStateToggle(e)}
+          title="Clique para alterar status"
+        >
+          <S.StateIcon src={stateIcon} />
+        </S.StateBtn>
       </S.CardWrapper>
     </S.CardContainer>
   );
 };
 
 ProductCard.propTypes = {
-  onClick: PropTypes.func,
   product: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
   stateIcon: PropTypes.string.isRequired,
+  handleStateToggle: PropTypes.func.isRequired,
+  handleOpenDeviceModal: PropTypes.func.isRequired,
 };

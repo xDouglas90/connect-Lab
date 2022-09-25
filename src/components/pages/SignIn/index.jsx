@@ -7,7 +7,7 @@ import { loginSchema } from '@utils';
 
 import { useAuthContext } from '@contexts';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { useTheme } from 'styled-components';
 
@@ -15,7 +15,6 @@ import { Layout } from '@templates';
 import { Button, Input, Link, Title } from '@atoms';
 
 import * as S from './styles';
-import 'react-toastify/dist/ReactToastify.min.css';
 
 export const SignIn = () => {
   const {
@@ -64,8 +63,6 @@ export const SignIn = () => {
 
   return (
     <Layout>
-      <ToastContainer />
-
       <S.Form onSubmit={handleSubmit(handleLoginSubmit)}>
         <Title text="Acessar" />
 

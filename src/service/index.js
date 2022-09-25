@@ -4,6 +4,8 @@ import {
   createUser,
   getUserDevices,
   getUserLocations,
+  putDeviceState,
+  deleteDevice,
 } from './api/api';
 import { queryClient } from './api/queryClient';
 
@@ -13,5 +15,7 @@ export {
   createUser,
   getUserDevices,
   getUserLocations,
+  putDeviceState,
+  deleteDevice,
   queryClient,
 };

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { WiHumidity } from 'react-icons/wi';
+import { FiWind } from 'react-icons/fi';
 import { FaTemperatureLow } from 'react-icons/fa';
 import { TbTemperaturePlus, TbTemperatureMinus } from 'react-icons/tb';
 
@@ -59,7 +60,7 @@ export const WeatherInfosWrapper = styled.footer`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 export const Temp = styled.div`
@@ -91,12 +92,17 @@ export const TempFeelsLikeIcon = styled(FaTemperatureLow)`
   margin: 0 5px;
 `;
 
-export const UmidityIcon = styled(WiHumidity)`
+export const HumidityIcon = styled(WiHumidity)`
   font-size: 33px;
   margin-left: -3px;
 `;
 
 export const TempPlusIcon = styled(TbTemperaturePlus)`
+  font-size: 28px;
+  margin-right: 5px;
+`;
+
+export const WindSpeedIcon = styled(FiWind)`
   font-size: 28px;
   margin-right: 5px;
 `;

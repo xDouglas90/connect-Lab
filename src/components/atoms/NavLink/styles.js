@@ -8,4 +8,5 @@ export const Link = styled(RouterLink)`
   font-size: 24px;
   line-height: 31px;
   text-align: center;
+  text-shadow: 0 0 2px var(--common-black);
 `;
