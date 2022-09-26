@@ -1,16 +1,25 @@
+import { useEffect } from 'react';
 import { useAuthContext } from '@contexts';
+import { useTheme } from 'styled-components';
+
+import { formatName } from '@utils';
 
 import { toast } from 'react-toastify';
-import { useTheme } from 'styled-components';
-import { Button, Link, Title } from '@atoms';
+
 import { Layout } from '@templates';
+import { Button, Link, Title } from '@atoms';
+
+import { DefaultAvatar } from '@images';
 
 import * as S from './styles';
 
 export const Profile = () => {
-  const { logout } = useAuthContext();
-
+  const { logout, user } = useAuthContext();
   const theme = useTheme();
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   const handleLogout = () => {
     toast.success('Você deslogou de sua conta', {
@@ -31,22 +40,30 @@ export const Profile = () => {
 
         <S.ProfileHeader>
           <S.UserAvatar>
-            <S.AvatarPic>DO</S.AvatarPic>
+            {user.photoUrl ? (
+              <S.AvatarPic src={user.photoUrl} alt="Foto do usuário" />
+            ) : (
+              <S.AvatarPic src={DefaultAvatar} alt="Avatar padrão" />
+            )}
           </S.UserAvatar>
           <S.UserInfo>
-            <S.UserName>Douglas Oliveira</S.UserName>
+            <S.UserName>{formatName(user.fullName)}</S.UserName>
             <S.UserContact>
-              <a href="mailto:email@email.com">email@email.com</a> -{' '}
-              <a href="tel:+4699999-9999">(46) 99999-9999</a>
+              <a href="mailto:{user.email}">{user.email}</a> -{' '}
+              {user.phone && <a href="tel:{user.phone}">{user.phone}</a>}
             </S.UserContact>
           </S.UserInfo>
         </S.ProfileHeader>
 
         <S.UserAddress>
           <S.AddressTitle>Endereço</S.AddressTitle>
-          <S.AddressZipCode>85500-000</S.AddressZipCode>
+          <S.AddressZipCode>{user.userAddress.zipCode}</S.AddressZipCode>
           <S.Address>
-            Av. Tupi, 5790 - Ap 180 - Centro - Pato Branco - PR{' '}
+            {formatName(user.userAddress.street)}, {user.userAddress.number} -{' '}
+            {formatName(user.userAddress.complement)} -{' '}
+            {formatName(user.userAddress.neighborhood)} -{' '}
+            {formatName(user.userAddress.city)} -{' '}
+            {formatName(user.userAddress.state)}{' '}
           </S.Address>
         </S.UserAddress>
 

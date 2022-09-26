@@ -47,12 +47,12 @@ export const ProfileHeader = styled.header`
   height: 60px;
 `;
 
-export const UserAvatar = styled.div`
+export const UserAvatar = styled.figure`
   width: 60px;
   height: 60px;
 `;
 
-export const AvatarPic = styled.div`
+export const AvatarPic = styled.img`
   background: ${({ theme }) =>
     setValueByTheme(
       theme.title,
