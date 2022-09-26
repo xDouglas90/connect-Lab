@@ -1,6 +1,13 @@
 import * as yup from 'yup';
 import regExp from './regExp';
 
+export const addDeviceSchema = yup.object().shape({
+  user: yup.string().required(),
+  device: yup.string().required(),
+  local: yup.string().required('Deve selecionar um dos locais'),
+  room: yup.string().min(4, 'Deve conter no mín. 4 caracteres').required(),
+});
+
 export const loginSchema = yup.object().shape({
   email: yup
     .string()

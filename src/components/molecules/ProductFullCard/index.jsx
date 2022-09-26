@@ -15,7 +15,7 @@ export const ProductFullCard = ({
     <S.CardContainer>
       <S.Header>
         <Title text={product.device.name} />
-        <S.Info>{product.manufacturer}</S.Info>
+        <S.Info>{product.device.madeBy}</S.Info>
       </S.Header>
 
       <S.ProductFigure>

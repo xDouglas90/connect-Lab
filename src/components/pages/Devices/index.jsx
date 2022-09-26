@@ -1,38 +1,136 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { useAuthContext } from '@contexts';
 
 import { Layout } from '@templates';
 import { AddDeviceModal, ProductList } from '@organisms';
-import { FilterGroup, DeviceCard, SearchField } from '@molecules';
+import { DeviceCard, FilterGroup, SearchField } from '@molecules';
+import { Title } from '@atoms';
+
+import { types } from '@utils';
+
+import { toast } from 'react-toastify';
+import { useTheme } from 'styled-components';
 
 import * as S from './styles';
-import { Title } from '@atoms';
-import { products } from '@utils';
+import { getDevices, postDevice } from '@service';
 
 export const Devices = () => {
+  const { userToken, user } = useAuthContext();
+  const [devicesList, setDevicesList] = useState([]);
+  const [devicesSearchList, setDevicesSearchList] = useState([]);
+  const [renderList, setRenderList] = useState([]);
   const [isAddDeviceModalOpen, setAddDeviceModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState({});
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDevice, setSelectedDevice] = useState({});
+
+  const theme = useTheme();
+
+  useEffect(() => {
+    const getDevicesFromAPI = async () => {
+      try {
+        const response = await getDevices(userToken);
+
+        setDevicesList([...response?.data]);
+      } catch (error) {
+        toast.error(`${error.response.data.error}`, {
+          autoClose: 3000,
+          position: toast.POSITION.TOP_CENTER,
+          theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+        });
+      }
+    };
+
+    getDevicesFromAPI();
+  }, [theme.title, userToken]);
+
+  useEffect(() => {
+    if (devicesSearchList.length) {
+      setRenderList([...devicesSearchList]);
+    } else {
+      setRenderList([...devicesList]);
+    }
+  }, [devicesList, devicesSearchList]);
 
   const handleOpenAddDeviceModal = (e) => {
     const selectedEl = e.target.dataset.id;
 
-    const product = products.filter((item) => item.id === selectedEl);
+    const selectedDevice = renderList.filter((item) => item._id === selectedEl);
 
     setAddDeviceModalOpen(true);
-    setSelectedProduct(...product);
+
+    setSelectedDevice({ ...selectedDevice[0] });
   };
 
   const handleCloseAddDeviceModal = () => setAddDeviceModalOpen(false);
 
-  const handleTypingSearchTerm = (e) => setSearchTerm(e.target.value);
+  const handleAddDevice = (data) => {
+    try {
+      const response = async () => {
+        return await postDevice(
+          userToken,
+          data.user,
+          data.device,
+          data.local,
+          data.room,
+        );
+      };
 
-  const handleSubmitSearchTerm = () =>
-    alert(`Você pesquisou por: ${searchTerm}`);
+      response();
 
-  const handleAddDevice = () => {
-    setTimeout(() => {
-      alert('device adicionado');
-    }, Math.floor(Math.random() * (20000 - 5000 + 1) + 5000));
+      setTimeout(() => {
+        toast.success(
+          `Produto adicionado com sucesso no local: ${data.local}, no cômodo: ${data.room}`,
+          {
+            autoClose: 5000,
+            position: toast.POSITION.TOP_CENTER,
+            theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+          },
+        );
+
+        setAddDeviceModalOpen(false);
+      }, Math.floor(Math.random() * (20000 - 5000 + 1) + 5000));
+    } catch (error) {
+      console.log(error);
+      toast.error(`${error.response.data.error}`, {
+        autoClose: 5000,
+        position: toast.POSITION.TOP_CENTER,
+        theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+      });
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    const resultsArray = devicesList.filter(
+      (device) =>
+        device.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        device.type.toLowerCase().includes(e.target.value.toLowerCase()),
+    );
+
+    setDevicesSearchList([...resultsArray]);
+  };
+
+  const handleSelectByType = (e) => {
+    if (e.target.innerText === 'Todos') {
+      toast.success(`Selecionado Todos os dispositivos`, {
+        autoClose: 3000,
+        position: toast.POSITION.TOP_CENTER,
+        theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+      });
+      return setRenderList([...devicesList]);
+    }
+
+    const resultsArray = devicesList.filter(
+      (device) =>
+        device.type.toLowerCase() === e.target.innerText.toLowerCase(),
+    );
+
+    toast.success(`Filtro de ${e.target.innerText} aplicado com sucesso`, {
+      autoClose: 3000,
+      position: toast.POSITION.TOP_CENTER,
+      theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+    });
+
+    return setRenderList([...resultsArray]);
   };
 
   return (
@@ -40,30 +138,32 @@ export const Devices = () => {
       <S.Container>
         <Title text="Dispositivos" />
 
-        <SearchField
-          onTyping={handleTypingSearchTerm}
-          onSearchTerm={handleSubmitSearchTerm}
-          term={searchTerm}
-        />
+        <SearchField onChange={handleSearchChange} />
 
-        <FilterGroup />
+        <FilterGroup locationsList={types} handleSelect={handleSelectByType} />
 
         <ProductList>
-          {products.map((product) => (
-            <DeviceCard
-              key={product.id}
-              product={product}
-              onClick={(e) => handleOpenAddDeviceModal(e)}
-            />
-          ))}
+          {devicesList.length === 0 ? (
+            <p>Carregando dispositivos..</p>
+          ) : (
+            renderList.map((device) => (
+              <DeviceCard
+                key={device._id}
+                id={device._id}
+                product={device}
+                onClick={handleOpenAddDeviceModal}
+              />
+            ))
+          )}
         </ProductList>
       </S.Container>
 
       <AddDeviceModal
         isOpen={isAddDeviceModalOpen}
-        onConfirm={handleAddDevice}
+        onAddDevice={handleAddDevice}
         onRequestClose={handleCloseAddDeviceModal}
-        product={selectedProduct}
+        device={selectedDevice}
+        userId={user._id}
       />
     </Layout>
   );

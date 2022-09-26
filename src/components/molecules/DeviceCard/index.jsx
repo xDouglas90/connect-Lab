@@ -4,21 +4,28 @@ import { Button, Title } from '@atoms';
 
 import * as S from './styles';
 
-export const DeviceCard = ({ product, onClick }) => {
+export const DeviceCard = ({ product, onClick, id }) => {
   return (
     <S.CardContainer>
-      <S.ProductFigure data-id={product.id}>
-        <S.ProductImg data-id={product.id} src={product.image} />
+      <S.ProductFigure>
+        <S.ProductImg src={product.photoUrl} />
       </S.ProductFigure>
 
-      <Title id={product.id} text={product.name} />
+      <Title text={product.name} />
 
-      <Button text="Adicionar" id={product.id} onClick={onClick} isPrimary />
+      <Button
+        text="Adicionar"
+        data-id={id}
+        id={id}
+        onClick={onClick}
+        isPrimary
+      />
     </S.CardContainer>
   );
 };
 
 DeviceCard.propTypes = {
+  id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired,
 };
