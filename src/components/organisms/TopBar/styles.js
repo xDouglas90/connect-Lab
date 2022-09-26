@@ -19,7 +19,7 @@ export const Header = styled.header`
   padding: 6px 0px 40px;
 
   @media (min-width: 768px) {
-    height: 6rem;
+    height: 5rem;
     flex-direction: row;
     padding: 0 1rem;
   }

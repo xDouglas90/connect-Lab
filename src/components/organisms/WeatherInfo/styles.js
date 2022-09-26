@@ -83,6 +83,14 @@ export const Info = styled.span`
   }
 `;
 
+export const Span = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  font-size: 16px;
+`;
+
 export const InfoValue = styled.strong`
   margin-left: 5px;
 `;

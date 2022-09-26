@@ -31,8 +31,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await createSession(email, password);
 
-      setUser({ ...response?.data });
-      setUserToken(response.token);
       setIsFetching(false);
 
       const loggedUser = JSON.stringify(response?.data.user);
@@ -40,6 +38,9 @@ export const AuthProvider = ({ children }) => {
 
       sessionStorage.setItem('user', loggedUser);
       sessionStorage.setItem('token', token);
+
+      setUser(JSON.parse(sessionStorage.getItem('user')));
+      setUserToken(sessionStorage.getItem('token'));
     } catch (error) {
       if (!error?.response) {
         setErrorMsg('Sem resposta do servidor');

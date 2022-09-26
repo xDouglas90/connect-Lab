@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useAuthContext } from '@contexts';
 import { useTheme } from 'styled-components';
 
@@ -12,14 +12,12 @@ import { Button, Link, Title } from '@atoms';
 import { DefaultAvatar } from '@images';
 
 import * as S from './styles';
+import { EditUserModal } from '@organisms';
 
 export const Profile = () => {
-  const { logout, user } = useAuthContext();
+  const { logout, user, isFetching } = useAuthContext();
   const theme = useTheme();
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  const [isEditUserModalOpen, setEditUserModalOpen] = useState(false);
 
   const handleLogout = () => {
     toast.success('Você deslogou de sua conta', {
@@ -32,6 +30,10 @@ export const Profile = () => {
       logout();
     }, 3500);
   };
+
+  const handleCloseEditUserModal = () => setEditUserModalOpen(false);
+
+  if (isFetching) return <p>Carregando...</p>;
 
   return (
     <Layout>
@@ -49,7 +51,7 @@ export const Profile = () => {
           <S.UserInfo>
             <S.UserName>{formatName(user.fullName)}</S.UserName>
             <S.UserContact>
-              <a href="mailto:{user.email}">{user.email}</a> -{' '}
+              <a href="mailto:{user.email}">{user.email}</a> <br />
               {user.phone && <a href="tel:{user.phone}">{user.phone}</a>}
             </S.UserContact>
           </S.UserInfo>
@@ -67,10 +69,20 @@ export const Profile = () => {
           </S.Address>
         </S.UserAddress>
 
-        <Button isPrimary text="Editar" />
+        <Button
+          isPrimary
+          text="Editar"
+          onClick={() => setEditUserModalOpen(true)}
+        />
 
         <Link text="Sair" url="/" onClick={handleLogout} />
       </S.Container>
+
+      <EditUserModal
+        isOpen={isEditUserModalOpen}
+        onRequestClose={handleCloseEditUserModal}
+        userData={user}
+      />
     </Layout>
   );
 };

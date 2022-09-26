@@ -41,13 +41,15 @@ export const Header = styled.header`
 
 export const ProductFigure = styled.figure`
   background: var(--common-white);
+  border: 4px solid transparent;
   border: 1px solid
     ${({ theme }) =>
       setValueByTheme(theme.title, 'var(--common-white)', 'var(--secondary)')};
   border-radius: 10px;
-  height: 80px;
+  height: 100px;
   padding: 5px;
-  width: 80px;
+  outline: 2px solid var(--primary);
+  width: 100px;
 `;
 
 export const ProductImg = styled.img`

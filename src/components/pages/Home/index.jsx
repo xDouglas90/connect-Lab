@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '@contexts';
+
 import {
   deleteDevice,
   getUserDevices,
@@ -19,7 +19,8 @@ import { offIcon, onIcon } from '@icons';
 import * as S from './styles';
 
 export const Home = () => {
-  const { userToken, user } = useAuthContext();
+  const userToken = sessionStorage.getItem('token');
+  const user = JSON.parse(sessionStorage.getItem('user'));
 
   const [isProductModalOpen, setProductModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
