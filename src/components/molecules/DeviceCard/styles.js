@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { setValueByTheme } from '@utils';
+import { Title } from '../../atoms/Title/styles';
 
 export const CardContainer = styled.li`
   background: ${({ theme }) =>
@@ -21,7 +22,7 @@ export const CardContainer = styled.li`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  height: 224px;
+  height: 240px;
   padding: 20px;
   width: 350px;
 
@@ -38,6 +39,12 @@ export const CardContainer = styled.li`
         )};
       transform: scale(1.02);
     }
+  }
+
+  ${Title} {
+    height: rem;
+    font-size: 18px;
+    text-align: center;
   }
 `;
 

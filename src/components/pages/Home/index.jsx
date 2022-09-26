@@ -169,7 +169,7 @@ export const Home = () => {
           handleSelect={handleSelect}
         />
         <ProductList>
-          {filteredDevicesList !== [] ? (
+          {filteredDevicesList.length > 0 ? (
             filteredDevicesList.map((product) => (
               <ProductCard
                 key={product._id}
@@ -181,7 +181,7 @@ export const Home = () => {
               />
             ))
           ) : (
-            <p>Lista vazia.</p>
+            <p>Lista vazia..</p>
           )}
         </ProductList>
       </S.Container>

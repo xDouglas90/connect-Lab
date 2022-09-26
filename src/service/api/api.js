@@ -85,3 +85,30 @@ export const deleteDevice = async (id, token) => {
     },
   });
 };
+
+export const postDevice = async (token, user, device, local, room) => {
+  return await api.post(
+    `userDevices`,
+    JSON.stringify({
+      user,
+      device,
+      is_on: true,
+      local,
+      room,
+    }),
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+};
+
+export const getDevices = async (token) => {
+  return await api.get(`devices`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};

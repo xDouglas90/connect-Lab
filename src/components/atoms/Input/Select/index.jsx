@@ -1,13 +1,17 @@
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as keyGen } from 'uuid';
 
 import * as S from '../styles';
 
-export const Select = ({ name, label, options }) => {
+// eslint-disable-next-line react/display-name
+export const Select = forwardRef((props, ref) => {
+  const { name, label, options } = props;
+
   return (
     <S.SelectWrapper>
       <S.Label htmlFor={name}>{label}</S.Label>
-      <S.Select name={name} id={name}>
+      <S.Select name={name} id={name} ref={ref}>
         {options.map((item) => (
           <option key={keyGen()} value={item}>
             {item}
@@ -16,7 +20,7 @@ export const Select = ({ name, label, options }) => {
       </S.Select>
     </S.SelectWrapper>
   );
-};
+});
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,

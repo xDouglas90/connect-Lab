@@ -1,5 +1,9 @@
-import { loginSchema, registerSchema } from './validateSchemas';
-import products from './devicesMockList';
+import {
+  addDeviceSchema,
+  loginSchema,
+  registerSchema,
+} from './validateSchemas';
 import setValueByTheme from './setValueByTheme';
+import types from './types';
 
-export { loginSchema, registerSchema, products, setValueByTheme };
+export { addDeviceSchema, loginSchema, registerSchema, setValueByTheme, types };

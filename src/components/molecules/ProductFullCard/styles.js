@@ -23,7 +23,7 @@ export const CardContainer = styled.li`
   flex-direction: column;
   justify-content: center;
   gap: 28px;
-  height: 536px;
+  height: 567px;
   padding: 3rem 2rem;
   width: 315px;
 `;
