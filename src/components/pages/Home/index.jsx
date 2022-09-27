@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import ScaleLoader from 'react-spinners/ScaleLoader';
+
 import {
   deleteDevice,
   getUserDevices,
@@ -182,7 +184,11 @@ export const Home = () => {
               />
             ))
           ) : (
-            <p>Lista vazia..</p>
+            <ScaleLoader
+              color="#500979"
+              loading={filteredDevicesList.length === 0}
+              size={20}
+            />
           )}
         </ProductList>
       </S.Container>

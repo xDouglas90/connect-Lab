@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useAuthContext } from '@contexts';
 
+import ScaleLoader from 'react-spinners/ScaleLoader';
+
 import { Layout } from '@templates';
 import { AddDeviceModal, ProductList } from '@organisms';
 import { DeviceCard, FilterGroup, SearchField } from '@molecules';
@@ -141,7 +143,11 @@ export const Devices = () => {
 
         <ProductList>
           {devicesList.length === 0 ? (
-            <p>Carregando dispositivos..</p>
+            <ScaleLoader
+              color="#500979"
+              loading={devicesList.length === 0}
+              size={20}
+            />
           ) : (
             renderList.map((device) => (
               <DeviceCard
