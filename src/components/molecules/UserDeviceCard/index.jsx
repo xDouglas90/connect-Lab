@@ -4,7 +4,7 @@ import { CardHeading } from '@atoms';
 
 import * as S from './styles';
 
-export const ProductCard = ({
+export const UserDeviceCard = ({
   product,
   id,
   stateIcon,
@@ -47,7 +47,7 @@ export const ProductCard = ({
   );
 };
 
-ProductCard.propTypes = {
+UserDeviceCard.propTypes = {
   product: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   stateIcon: PropTypes.string.isRequired,

@@ -6,7 +6,7 @@ import { Button, Title } from '@atoms';
 
 import * as S from './styles';
 
-export const ProductFullCard = ({
+export const UserDeviceFullCard = ({
   product,
   stateIcon,
   id,
@@ -62,7 +62,7 @@ export const ProductFullCard = ({
   );
 };
 
-ProductFullCard.propTypes = {
+UserDeviceFullCard.propTypes = {
   id: PropTypes.string.isRequired,
   product: PropTypes.object.isRequired,
   stateIcon: PropTypes.string.isRequired,

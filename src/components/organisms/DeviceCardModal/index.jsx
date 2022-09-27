@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 Modal.setAppElement('#root');
 
-export const ProductModal = ({ children, isOpen, onRequestClose }) => {
+export const DeviceCardModal = ({ children, isOpen, onRequestClose }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -16,7 +16,7 @@ export const ProductModal = ({ children, isOpen, onRequestClose }) => {
   );
 };
 
-ProductModal.propTypes = {
+DeviceCardModal.propTypes = {
   children: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
