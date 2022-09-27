@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useAuthContext } from '@contexts';
 
+import ScaleLoader from 'react-spinners/ScaleLoader';
+
 import { Layout } from '@templates';
 import { AddDeviceModal, ProductList } from '@organisms';
 import { DeviceCard, FilterGroup, SearchField } from '@molecules';
@@ -16,7 +18,8 @@ import * as S from './styles';
 import { getDevices, postDevice } from '@service';
 
 export const Devices = () => {
-  const { userToken, user } = useAuthContext();
+  const { user } = useAuthContext();
+  const token = sessionStorage.getItem('token');
   const [devicesList, setDevicesList] = useState([]);
   const [devicesSearchList, setDevicesSearchList] = useState([]);
   const [renderList, setRenderList] = useState([]);
@@ -28,7 +31,7 @@ export const Devices = () => {
   useEffect(() => {
     const getDevicesFromAPI = async () => {
       try {
-        const response = await getDevices(userToken);
+        const response = await getDevices(token);
 
         setDevicesList([...response?.data]);
       } catch (error) {
@@ -41,7 +44,7 @@ export const Devices = () => {
     };
 
     getDevicesFromAPI();
-  }, [theme.title, userToken]);
+  }, [theme.title, token]);
 
   useEffect(() => {
     if (devicesSearchList.length) {
@@ -67,7 +70,7 @@ export const Devices = () => {
     try {
       const response = async () => {
         return await postDevice(
-          userToken,
+          token,
           data.user,
           data.device,
           data.local,
@@ -78,19 +81,15 @@ export const Devices = () => {
       response();
 
       setTimeout(() => {
-        toast.success(
-          `Produto adicionado com sucesso no local: ${data.local}, no cômodo: ${data.room}`,
-          {
-            autoClose: 5000,
-            position: toast.POSITION.TOP_CENTER,
-            theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
-          },
-        );
+        toast.success(`Produto adicionado com sucesso`, {
+          autoClose: 5000,
+          position: toast.POSITION.TOP_CENTER,
+          theme: `${theme.title === 'Claro' ? 'light' : 'dark'}`,
+        });
 
         setAddDeviceModalOpen(false);
       }, Math.floor(Math.random() * (20000 - 5000 + 1) + 5000));
     } catch (error) {
-      console.log(error);
       toast.error(`${error.response.data.error}`, {
         autoClose: 5000,
         position: toast.POSITION.TOP_CENTER,
@@ -144,7 +143,11 @@ export const Devices = () => {
 
         <ProductList>
           {devicesList.length === 0 ? (
-            <p>Carregando dispositivos..</p>
+            <ScaleLoader
+              color="#500979"
+              loading={devicesList.length === 0}
+              size={20}
+            />
           ) : (
             renderList.map((device) => (
               <DeviceCard

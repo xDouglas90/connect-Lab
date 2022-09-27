@@ -46,6 +46,34 @@ export const createUser = async (data) => {
   );
 };
 
+export const editUser = async (data, token, id) => {
+  return await api.put(
+    `users/${id}`,
+    JSON.stringify({
+      email: data.email,
+      password: data.password,
+      fullName: data.fullName,
+      photoUrl: data.photoUrl,
+      phone: data.phone,
+      userAddress: {
+        zipCode: data.zipCode,
+        street: data.street,
+        number: data.number,
+        neighborhood: data.neighborhood,
+        city: data.city,
+        state: data.state,
+        complement: data.complement,
+      },
+    }),
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+};
+
 export const getUserLocations = async (token) => {
   return await api.get('locals', {
     headers: {

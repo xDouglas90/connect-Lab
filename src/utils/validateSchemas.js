@@ -25,12 +25,7 @@ export const registerSchema = yup.object().shape({
     .matches(regExp.name, 'Números não são permitidos no nome')
     .min(2, 'Nome inválido')
     .required('Necessário preencher o nome completo'),
-  photoUrl: yup
-    .string()
-    .nullable()
-    .notRequired()
-    .matches(regExp.url, { message: 'URL inválida', excludeEmptyString: true })
-    .min(4, 'URL inválida'),
+  photoUrl: yup.string().nullable().notRequired(),
   email: yup
     .string()
     .matches(regExp.email, 'Digite um email válido')
@@ -43,11 +38,7 @@ export const registerSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password'), null], 'Não confere com a senha digitada')
     .required('Necessário confirmação de senha'),
-  phone: yup
-    .string()
-    .matches(regExp.phone, 'Digite um número válido')
-    .min(8, 'Verifique a quantidade de números')
-    .nullable(),
+  phone: yup.string().nullable().notRequired(),
   zipCode: yup
     .string()
     .min(8, 'Deve possuir no mín. 8 dígitos')

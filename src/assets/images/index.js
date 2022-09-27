@@ -1,3 +1,4 @@
+import DefaultAvatar from './default-avatar.png';
 import Logo from './connect-lab-logo.png';
 
-export { Logo };
+export { DefaultAvatar, Logo };

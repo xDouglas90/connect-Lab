@@ -5,13 +5,11 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 267px;
-  height: 86.52px;
   gap: 5px;
 `;
 
 export const Icon = styled.img`
-  width: 80px;
-  height: 86.52px;
+  width: 56px;
 `;
 
 export const Name = styled.strong`

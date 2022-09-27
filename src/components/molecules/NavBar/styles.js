@@ -9,7 +9,7 @@ export const NavBar = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 6rem;
+    height: 5rem;
     width: initial;
   }
 `;

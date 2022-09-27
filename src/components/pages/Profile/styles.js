@@ -9,7 +9,7 @@ export const Container = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 28px;
+  gap: 35px;
   padding: 44px 0;
   width: 338px;
   height: 399.55px;
@@ -26,7 +26,7 @@ export const Container = styled.article`
     setValueByTheme(
       theme.title,
       '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      '0 4px 4px rgba(129,214,187, 0.27)',
+      '0 4px 4px rgba(129,216,187, 0.27)',
     )};
   border-radius: 10px;
 
@@ -40,6 +40,7 @@ export const ProfileHeader = styled.header`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 0px;
   gap: 10px;
 
@@ -47,25 +48,21 @@ export const ProfileHeader = styled.header`
   height: 60px;
 `;
 
-export const UserAvatar = styled.div`
-  width: 60px;
-  height: 60px;
+export const UserAvatar = styled.figure`
+  width: 77px;
+  height: 77px;
 `;
 
-export const AvatarPic = styled.div`
-  background: ${({ theme }) =>
-    setValueByTheme(
-      theme.title,
-      'var(--common-lt-gray)',
-      'var(--common-white)',
-    )};
+export const AvatarPic = styled.img`
+  border: 2px solid transparent;
   border-radius: 50%;
-  width: 58.82px;
-  height: 60px;
+  width: 77px;
+  height: 77px;
   display: grid;
   place-content: center;
   color: ${colors.primary.main};
   font-weight: 700;
+  outline: 2px solid var(--primary);
 `;
 
 export const UserInfo = styled.div`
@@ -75,8 +72,7 @@ export const UserInfo = styled.div`
   align-items: flex-start;
   padding: 0px;
   gap: 4px;
-
-  width: 215px;
+  width: 165px;
   height: 38px;
 `;
 
@@ -88,7 +84,7 @@ export const UserName = styled.strong`
       'var(--common-white)',
     )};
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 18px;
   text-transform: capitalize;
 `;
@@ -116,7 +112,7 @@ export const UserAddress = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 0px;
 
   width: 285px;
@@ -138,7 +134,8 @@ export const AddressTitle = styled.strong`
       'var(--common-white)',
     )};
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
+  text-align: center;
   text-transform: capitalize;
   width: 100%;
 `;
@@ -152,6 +149,7 @@ export const AddressZipCode = styled.p`
     )};
   font-weight: 400;
   font-size: 12px;
+  text-align: center;
 `;
 
 export const Address = styled.p`
@@ -162,4 +160,5 @@ export const Address = styled.p`
       'var(--common-white)',
     )};
   font-size: 10px;
+  text-align: center;
 `;

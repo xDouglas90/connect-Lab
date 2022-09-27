@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useAuthContext } from '@contexts';
-// import PropTypes from 'prop-types';
 
 import { Title } from '@atoms';
 
@@ -10,13 +8,14 @@ import { useQuery } from 'react-query';
 
 import { toast } from 'react-toastify';
 import { useTheme } from 'styled-components';
+import { date } from '@utils';
 
 const STATE_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
 const API_URL = import.meta.env.VITE_OPEN_WEATHER_API;
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
 export const WeatherInfo = () => {
-  const { user } = useAuthContext();
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const {
     userAddress: { city: userCity, state: userState },
   } = user;
@@ -40,6 +39,8 @@ export const WeatherInfo = () => {
       staleTime: Infinity,
     },
   );
+
+  const today = date();
 
   useEffect(() => {
     if (data) {
@@ -92,12 +93,13 @@ export const WeatherInfo = () => {
         <S.Temp>
           <Title text={`${parseInt(weatherData.main.temp)}º`} />
 
-          <S.Info>{weatherData.weather[0].description}</S.Info>
+          <S.Span>{weatherData.weather[0].description}</S.Span>
         </S.Temp>
 
         <S.UserCity>
           {userCity}, {stateInitials}
         </S.UserCity>
+        <S.Span>{today}</S.Span>
       </S.WeatherInfosWrapper>
 
       <S.WeatherIcon
@@ -146,5 +148,3 @@ export const WeatherInfo = () => {
     </S.Container>
   );
 };
-
-// WeatherInfo.propTypes = {};
