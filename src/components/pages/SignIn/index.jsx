@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { motion } from 'framer-motion';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from '@utils';
@@ -63,7 +65,13 @@ export const SignIn = () => {
 
   return (
     <Layout>
-      <S.Form onSubmit={handleSubmit(handleLoginSubmit)}>
+      <S.Form
+        onSubmit={handleSubmit(handleLoginSubmit)}
+        as={motion.form}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Title text="Acessar" />
 
         <Input

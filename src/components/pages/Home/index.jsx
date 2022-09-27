@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { motion } from 'framer-motion';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import {
@@ -165,7 +166,12 @@ export const Home = () => {
 
   return (
     <Layout>
-      <S.Container>
+      <S.Container
+        as={motion.section}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <WeatherInfo />
         <FilterGroup
           locationsList={locationsList}
