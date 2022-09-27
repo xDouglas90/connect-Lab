@@ -9,8 +9,37 @@
 
 <img src="./public/connect-lab-logo.png" />
 
-Nome do Projeto: Connect Lab
-Link: [connect-lab.netlify](https://connect-lab.netlify.app/)
+- Nome do Projeto: Connect Lab
+- Link: [connect-lab.netlify](https://connect-lab.netlify.app/)
+
+Aplicação frontend para interface de dispositivos conectados.
+
+- Aplicação responsiviva e com tema claro/escuro:
+
+![image](https://user-images.githubusercontent.com/23640888/192613751-fdef31a3-bf97-4031-acbe-ee369e809135.png)
+![image](https://user-images.githubusercontent.com/23640888/192613831-4d5e7542-71a5-47cc-a692-264dc34ef085.png)
+
+
+- <strong>Página Login</strong> - Onde o usuário deslogado é direcionado ao acessar a aplicação:
+
+![image](https://user-images.githubusercontent.com/23640888/192612982-21834ee8-1b89-4389-bfd6-1d39051ff00e.png)
+
+- <strong>Página Cadastro</strong> - Onde o usuário pode registrar uma conta nova:
+
+![image](https://user-images.githubusercontent.com/23640888/192613319-d07d9503-2a11-460b-a3c1-d159dbef3f7f.png)
+
+
+- <strong>Página Início</strong> - Onde o usuário logado é direcionado, contendo um box com informações do temperatura em tempo real, baseado no endereço fornecido em seu cadastro:
+
+![image](https://user-images.githubusercontent.com/23640888/192611349-99459c4c-cb4a-4b2d-b5e9-fce5fe915e76.png)
+
+- <strong>Página Dispositivos</strong> - Onde o usuário logado encontrara toda a gama de produtos disponíveis para o seu uso, podendo pesquisar digitando seu nome ou tipo e/ou selecionar os botões de filtros por tipos:
+
+![image](https://user-images.githubusercontent.com/23640888/192611811-5a5b7432-ba9d-43d2-860e-333e3df5757c.png)
+
+- <strong>Página Perfil</strong> - Onde o usuário logado poderá editar informações cadastradas:
+
+![image](https://user-images.githubusercontent.com/23640888/192612254-ad336d4c-4b68-414b-84af-b50db56cee2a.png)
 
 ## 🛠️ Stack
 
