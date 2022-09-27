@@ -41,30 +41,30 @@ export const UserDeviceCard = ({
           </S.ProductChars>
 
           <S.ActionBtnsGroup>
-          <S.ActionBtn
-            data-id={id}
-            onClick={(e) => handleStateToggle(e)}
-            title="Clique para alterar o status do dispositivo"
-          >
-            <S.StateIcon src={stateIcon} />
-          </S.ActionBtn>
+            <S.ActionBtn
+              data-id={id}
+              onClick={(e) => handleStateToggle(e)}
+              title="Clique para alterar o status do dispositivo"
+            >
+              <S.StateIcon src={stateIcon} />
+            </S.ActionBtn>
 
-          <S.ActionBtn
-            data-id={id}
-            onClick={(e) => handleMoreInfo(e)}
-            title="Clique mais informações do dispositivo"
-          >
-            <S.StateIcon src={infoIcon} />
-          </S.ActionBtn>
+            <S.ActionBtn
+              data-id={id}
+              onClick={(e) => handleMoreInfo(e)}
+              title="Clique mais informações do dispositivo"
+            >
+              <S.StateIcon src={infoIcon} />
+            </S.ActionBtn>
 
-          <S.ActionBtn
-            data-id={id}
-            onClick={(e) => handleDelete(e)}
-            title="Clique para remover o dispositivo"
-          >
-            <S.StateIcon src={deleteIcon} />
-          </S.ActionBtn>
-        </S.ActionBtnsGroup>
+            <S.ActionBtn
+              data-id={id}
+              onClick={(e) => handleDelete(e)}
+              title="Clique para remover o dispositivo"
+            >
+              <S.StateIcon src={deleteIcon} />
+            </S.ActionBtn>
+          </S.ActionBtnsGroup>
         </S.ProductInfos>
       </S.CardWrapper>
     </S.CardContainer>
