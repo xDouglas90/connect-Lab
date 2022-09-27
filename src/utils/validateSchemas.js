@@ -32,8 +32,11 @@ export const registerSchema = yup.object().shape({
     .required('Necessário preencher o e-mail'),
   password: yup
     .string()
-    .min(8, 'Senha deve conter no mín. 8 caracteres')
-    .required(),
+    .required('Obrigatório digitar uma senha')
+    .matches(
+      regExp.password,
+      'Senha deve possuir ao menos 8 dígitos, sendo 1 letra maiúscula, 1 número e um caractere especial',
+    ),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], 'Não confere com a senha digitada')
