@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 
+import { motion } from 'framer-motion';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { addDeviceSchema } from '@utils';
@@ -44,7 +46,13 @@ export const AddDeviceModal = ({
       overlayClassName="modal-overlay"
       className="modal-container"
     >
-      <S.Form onSubmit={handleSubmit(onAddDevice)}>
+      <S.Form
+        onSubmit={handleSubmit(onAddDevice)}
+        as={motion.form}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Title text={device.name} />
         <Input
           label="Id"

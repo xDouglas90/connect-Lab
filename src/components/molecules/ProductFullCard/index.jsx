@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import { motion } from 'framer-motion';
+
 import { Button, Title } from '@atoms';
 
 import * as S from './styles';
@@ -12,7 +14,12 @@ export const ProductFullCard = ({
   handleRemoveDevice,
 }) => {
   return (
-    <S.CardContainer>
+    <S.CardContainer
+      as={motion.li}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <S.Header>
         <Title text={product.device.name} />
         <S.Info>{product.device.madeBy}</S.Info>

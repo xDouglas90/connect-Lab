@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
@@ -11,8 +17,24 @@ export const useCustomTheme = () => useContext(ThemeContext);
 export const CustomThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(light);
 
+  useEffect(() => {
+    const userPreference = sessionStorage.getItem('theme') || '';
+
+    if (userPreference === 'dark') {
+      setTheme(dark);
+    } else {
+      setTheme(light);
+    }
+  }, []);
+
   const toggleTheme = useCallback(() => {
-    setTheme(theme.title === 'Claro' ? dark : light);
+    if (theme.title === 'Claro') {
+      sessionStorage.setItem('theme', 'dark');
+      setTheme(dark);
+    } else {
+      sessionStorage.setItem('theme', 'light');
+      setTheme(light);
+    }
   }, [theme]);
 
   return (

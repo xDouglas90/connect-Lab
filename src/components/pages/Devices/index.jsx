@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useAuthContext } from '@contexts';
 
+import { motion } from 'framer-motion';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import { Layout } from '@templates';
@@ -134,7 +135,12 @@ export const Devices = () => {
 
   return (
     <Layout>
-      <S.Container>
+      <S.Container
+        as={motion.section}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Title text="Dispositivos" />
 
         <SearchField onChange={handleSearchChange} />

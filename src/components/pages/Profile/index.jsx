@@ -4,6 +4,8 @@ import { useTheme } from 'styled-components';
 
 import { formatName } from '@utils';
 
+import { motion } from 'framer-motion';
+
 import { toast } from 'react-toastify';
 
 import { Layout } from '@templates';
@@ -37,7 +39,12 @@ export const Profile = () => {
 
   return (
     <Layout>
-      <S.Container>
+      <S.Container
+        as={motion.article}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Title text="Meu perfil" />
 
         <S.ProfileHeader>

@@ -4,6 +4,8 @@ import axios from 'axios';
 import { createUser } from '@service';
 import { useNavigate } from 'react-router-dom';
 
+import { motion } from 'framer-motion';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from '@utils';
@@ -125,7 +127,13 @@ export const SignUp = () => {
 
   return (
     <Layout>
-      <S.Form onSubmit={handleSubmit(onSubmit)}>
+      <S.Form
+        onSubmit={handleSubmit(onSubmit)}
+        as={motion.form}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
         <Title text="Cadastrar" />
 
         <S.FieldsContainer>
