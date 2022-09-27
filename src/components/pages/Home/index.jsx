@@ -185,6 +185,8 @@ export const Home = () => {
                 id={product._id}
                 product={product}
                 handleStateToggle={stateToggle}
+                handleDelete={deleteDeviceFromUserList}
+                handleMoreInfo={handleOpenDeviceCardModal}
                 handleOpenDeviceModal={handleOpenDeviceCardModal}
                 stateIcon={!product.is_on ? offIcon : onIcon}
               />
