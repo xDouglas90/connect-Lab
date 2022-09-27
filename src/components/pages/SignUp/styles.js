@@ -52,6 +52,6 @@ export const Error = styled.span`
   color: var(--error);
   width: 100%;
   height: -1px;
-  font-weight: 600;
   font-size: 0.85rem;
+  line-height: 0.9;
 `;

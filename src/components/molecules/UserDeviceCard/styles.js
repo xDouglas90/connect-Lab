@@ -19,8 +19,8 @@ export const CardContainer = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 120px;
-  width: 350px;
+  height: 150px;
+  width: 320px;
 
   @media (min-width: 576px) {
     transition: transform ease-in 0.25s, box-shadow ease-in 0.3s;
@@ -42,7 +42,8 @@ export const CardWrapper = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
   background: transparent;
   height: 100%;
   padding: 1.1rem;
@@ -76,9 +77,9 @@ export const ProductInfos = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 4px;
-  height: 80px;
-  max-width: 173px;
+  gap: 8px;
+  height: 130px;
+  max-width: 227px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: '...';
@@ -96,7 +97,12 @@ export const ProductChar = styled.span`
   font-size: 1rem;
 `;
 
-export const StateBtn = styled.button`
+export const ActionBtnsGroup = styled.div`
+  display: flex;
+  gap: 1.5rem;
+`;
+
+export const ActionBtn = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;

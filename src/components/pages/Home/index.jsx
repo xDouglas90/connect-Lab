@@ -14,8 +14,8 @@ import { toast } from 'react-toastify';
 import { useTheme } from 'styled-components';
 
 import { Layout } from '@templates';
-import { ProductList, ProductModal, WeatherInfo } from '@organisms';
-import { FilterGroup, ProductCard, ProductFullCard } from '@molecules';
+import { ProductList, DeviceCardModal, WeatherInfo } from '@organisms';
+import { FilterGroup, UserDeviceCard, UserDeviceFullCard } from '@molecules';
 
 import { offIcon, onIcon } from '@icons';
 
@@ -25,7 +25,7 @@ export const Home = () => {
   const userToken = sessionStorage.getItem('token');
   const user = JSON.parse(sessionStorage.getItem('user'));
 
-  const [isProductModalOpen, setProductModalOpen] = useState(false);
+  const [isDeviceCardModalOpen, setDeviceCardModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
   const [userDevicesList, setUserDevicesList] = useState([]);
   const [filteredDevicesList, setFilteredDevicesList] = useState([]);
@@ -82,17 +82,17 @@ export const Home = () => {
     getListFromAPI();
   }, [theme.title, user._id, userDevicesList, userToken]);
 
-  const handleOpenProductModal = (e) => {
+  const handleOpenDeviceCardModal = (e) => {
     const selectedDeviceId = e.currentTarget.dataset.id;
     const device = userDevicesList.filter(
       (device) => device._id === selectedDeviceId,
     );
 
-    setProductModalOpen(true);
+    setDeviceCardModalOpen(true);
     setSelectedProduct(...device);
   };
 
-  const handleCloseProductModal = () => setProductModalOpen(false);
+  const handleCloseDeviceCardModal = () => setDeviceCardModalOpen(false);
 
   const handleSelect = (e) => {
     setSelectedLocationsID(e.target.dataset.id);
@@ -147,7 +147,7 @@ export const Home = () => {
   const deleteDeviceFromUserList = async () => {
     try {
       await deleteDevice(selectedProduct._id, userToken)
-        .then(() => setProductModalOpen(false))
+        .then(() => setDeviceCardModalOpen(false))
         .finally(() => {
           toast.success(`Produto removido com sucesso`, {
             autoClose: 3000,
@@ -180,12 +180,14 @@ export const Home = () => {
         <ProductList>
           {filteredDevicesList.length > 0 ? (
             filteredDevicesList.map((product) => (
-              <ProductCard
+              <UserDeviceCard
                 key={product._id}
                 id={product._id}
                 product={product}
                 handleStateToggle={stateToggle}
-                handleOpenDeviceModal={handleOpenProductModal}
+                handleDelete={deleteDeviceFromUserList}
+                handleMoreInfo={handleOpenDeviceCardModal}
+                handleOpenDeviceModal={handleOpenDeviceCardModal}
                 stateIcon={!product.is_on ? offIcon : onIcon}
               />
             ))
@@ -199,18 +201,18 @@ export const Home = () => {
         </ProductList>
       </S.Container>
 
-      <ProductModal
-        isOpen={isProductModalOpen}
-        onRequestClose={handleCloseProductModal}
+      <DeviceCardModal
+        isOpen={isDeviceCardModalOpen}
+        onRequestClose={handleCloseDeviceCardModal}
       >
-        <ProductFullCard
+        <UserDeviceFullCard
           id={selectedProduct._id}
           product={selectedProduct}
           stateIcon={!selectedProduct.is_on ? offIcon : onIcon}
           handleStateToggle={stateToggle}
           handleRemoveDevice={deleteDeviceFromUserList}
         />
-      </ProductModal>
+      </DeviceCardModal>
     </Layout>
   );
 };

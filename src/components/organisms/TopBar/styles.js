@@ -17,15 +17,15 @@ export const Header = styled.header`
   align-items: center;
   height: 260px;
   padding: 6px 0px 40px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 100;
 
   @media (min-width: 768px) {
     height: 5rem;
     flex-direction: row;
     padding: 0 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 100;
   }
 `;
