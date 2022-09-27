@@ -33,6 +33,11 @@ Aplicação frontend para interface de dispositivos conectados.
 
 ![image](https://user-images.githubusercontent.com/23640888/192611349-99459c4c-cb4a-4b2d-b5e9-fce5fe915e76.png)
 
+Clicando no nome do dispositivo ou no ícone de info(i), o usuário obtém informações mais detalhadas do mesmo através de um modal:
+
+![image](https://user-images.githubusercontent.com/23640888/192614515-7dbbc777-1ff1-4aec-8e15-5cc1556043b2.png)
+
+
 - <strong>Página Dispositivos</strong> - Onde o usuário logado encontrara toda a gama de produtos disponíveis para o seu uso, podendo pesquisar digitando seu nome ou tipo e/ou selecionar os botões de filtros por tipos:
 
 ![image](https://user-images.githubusercontent.com/23640888/192611811-5a5b7432-ba9d-43d2-860e-333e3df5757c.png)
