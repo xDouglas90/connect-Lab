@@ -4,6 +4,7 @@
 
 ![ReactJS](https://img.shields.io/badge/reactjs-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
 ## 📚 Descrição
 
