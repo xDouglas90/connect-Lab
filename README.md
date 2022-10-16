@@ -11,6 +11,8 @@
 
 - Nome do Projeto: Connect Lab
 - Link: [connect-lab.netlify](https://connect-lab.netlify.app/)
+- Doc com requísitos do projeto: [DEVin[Intelbras] - Módulo 1 - Projeto 2](https://github.com/xDouglas90/connect-Lab/files/9795625/DEVin.Intelbras.-.Modulo.1.-.Projeto.2.pdf)
+
 
 Aplicação frontend para interface de dispositivos conectados.
 
